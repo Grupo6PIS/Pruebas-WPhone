@@ -13,6 +13,6 @@ namespace BeatIt_.AppCode.Controllers
 {
     public class ChallengeController
     {
-
+         
     }
 }

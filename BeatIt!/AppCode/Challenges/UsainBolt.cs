@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 namespace BeatIt_.AppCode.Challenges
 {
     public class UsainBolt
-    {
+    { 
 
     }
 }

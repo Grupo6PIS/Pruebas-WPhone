@@ -13,6 +13,6 @@ namespace BeatIt_.AppCode.Datatypes
 {
     public class DTChallenge
     {
-
+         
     }
 }
