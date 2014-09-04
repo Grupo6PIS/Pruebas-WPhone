@@ -33,7 +33,9 @@
 
             <!--Pivot item three-->
             <controls:PivotItem Header="Profile">
-                <Grid Name="ProfileGrid" />
+                <Grid Name="ProfileGrid">
+                    <Button Content="Logout" Height="72" HorizontalAlignment="Left" Margin="150,88,0,0" Name="button3" VerticalAlignment="Top" Width="160" Click="button3_Click" />
+                </Grid>
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>

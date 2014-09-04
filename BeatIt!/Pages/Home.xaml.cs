@@ -29,5 +29,10 @@ namespace BeatIt_.Pages
         {
             NavigationService.Navigate(new Uri("/BeatIt!;component/Pages/Challenge1.xaml", UriKind.Relative));
         }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/BeatIt!;component/Pages/Login.xaml", UriKind.Relative));
+        }
     }
 }
