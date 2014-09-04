@@ -62,6 +62,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppCode\Challenges\UsainBolt.cs" />
+    <Compile Include="AppCode\Classes\Challenge.cs" />
+    <Compile Include="AppCode\Classes\State.cs" />
+    <Compile Include="AppCode\Controllers\ChallengeController.cs" />
+    <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
+    <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
     <Compile Include="Pages\Challenge1.xaml.cs">
       <DependentUpon>Challenge1.xaml</DependentUpon>
     </Compile>
