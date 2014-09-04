@@ -6,6 +6,6 @@ using System.Text;
 namespace BeatIt_.AppCode.Interfaces
 {
     interface IChallengeController
-    {
+    { 
     }
 }
