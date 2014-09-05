@@ -19,5 +19,10 @@ namespace BeatIt_.Pages
         {
             InitializeComponent();
         }
+
+        private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
     }
 }

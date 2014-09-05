@@ -116,6 +116,11 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\Desafios-V2-Mini.png" />
+    <Resource Include="Images\Desafios-V2-HD.png" />
+    <Resource Include="Images\screen-shot-2012-08-10-at-9-54-31-pm.png" />
+    <Resource Include="Images\UB.jpg" />
+    <Resource Include="Images\UB.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>

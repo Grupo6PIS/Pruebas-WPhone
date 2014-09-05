@@ -16,18 +16,41 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="161"/>
+            <RowDefinition Height="607*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="BeatIt!" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Challenge 1" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        <Grid x:Name="TitlePanel" Margin="12,17,0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="342*" />
+                <ColumnDefinition Width="126*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="ApplicationTitle" Text="BeatIt!" Style="{StaticResource PhoneTextNormalStyle}" Margin="53,29,4,84" Grid.ColumnSpan="2" />
+            <TextBlock x:Name="ChallengeTitle" Text="Usain Bolt" Margin="10,42,0,-13" Style="{StaticResource PhoneTextTitle1Style}" Grid.ColumnSpan="2" />
+            <Image Height="30" HorizontalAlignment="Left" Margin="16,29,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/BeatIt!;component/Images/Desafios-V2-Mini.png" />
+        </Grid>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <Grid x:Name="ContentPanel" Margin="12,160,12,28" Grid.RowSpan="2">
+            <Image Height="200" HorizontalAlignment="Left" Margin="10,21,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="200" ImageFailed="image1_ImageFailed" Source="/BeatIt!;component/Images/UB.png" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="230,21,0,0" Name="textDetail" Text="Details" VerticalAlignment="Top" FontWeight="Bold" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="230,63,0,0" Name="textStartTime" Text="StartTime:" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="230,99,0,0" Name="textDuration" Text="Duration:" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="230,134,0,0" Name="textDifficulty" Text="Difficulty:" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="230,170,0,0" Name="textToBeat" Text="ToBeat:" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Normal" Height="63" HorizontalAlignment="Left" Margin="10,227,0,0" Name="titleDescription" Text="Description" VerticalAlignment="Top" Width="246" FontSize="40" />
+            <TextBlock FontWeight="Light" Foreground="White" HorizontalAlignment="Left" Margin="10,281,0,263" Name="textDescription" Text="In this challenge you have to run faster" Width="410" />
+            <TextBlock FontSize="40" FontWeight="Normal" Height="52" HorizontalAlignment="Left" Margin="10,350,0,0" Name="titleTime" Text="Time Left" VerticalAlignment="Top" Width="197" />
+            <TextBlock FontSize="40" FontWeight="Normal" Height="52" HorizontalAlignment="Left" Margin="10,447,0,0" Name="textSpeed" Text="Current Speed" VerticalAlignment="Top" Width="261" />
+            <TextBlock FontSize="40" FontWeight="Normal" Height="52" HorizontalAlignment="Left" Margin="10,402,0,0" Name="textBlock1" Text="----" VerticalAlignment="Top" Width="261" Foreground="#FF008A00" />
+            <TextBlock FontSize="40" FontWeight="Normal" Foreground="#FF008A00" Height="52" HorizontalAlignment="Left" Margin="10,502,0,0" Name="ShowSpeed" Text="----" VerticalAlignment="Top" Width="261" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="335,63,0,0" Name="ShowST" Text="---" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="335,99,0,0" Name="ShowDuration" Text="---" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="335,134,0,0" Name="ShowDifficulty" Text="---" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Light" Foreground="#FF867A7A" Height="30" HorizontalAlignment="Left" Margin="335,170,0,0" Name="ShowToBeat" Text="---" VerticalAlignment="Top" />
+            <TextBlock FontWeight="Light" Foreground="White" Height="44" HorizontalAlignment="Left" Margin="10,310,0,0" Name="textBlock2" Text="than 20km/h for 1 minute" VerticalAlignment="Top" Width="410" />
+        </Grid>
     </Grid>
  
     <!--Sample code showing usage of ApplicationBar-->
