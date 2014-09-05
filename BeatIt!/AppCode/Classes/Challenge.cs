@@ -12,7 +12,9 @@ using System.Windows.Shapes;
 namespace BeatIt_.AppCode.Classes
 {
     public class Challenge
-    { 
-
+    {
+        private string name;
+        private string descripcion;
+        private int nivel;
     }
 }
