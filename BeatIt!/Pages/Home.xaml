@@ -1,5 +1,4 @@
-﻿<phone:PhoneApplicationPage 
-    x:Class="BeatIt_.Pages.Home"
+﻿<phone:PhoneApplicationPage
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -7,6 +6,8 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    x:Class="BeatIt_.Pages.Home" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -20,21 +21,26 @@
         <controls:Pivot Title="BeatIt!">
             <!--Pivot item one-->
             <controls:PivotItem Header="Challenges">
-                <Grid Name="ChallengesGrid">
-                    <Button Content="Challenge 1 (Finished)" Height="72" HorizontalAlignment="Left" Name="button1" VerticalAlignment="Top" Width="456" Click="button1_Click" />
-                    <Button Content="Challenge 1 (In Progress)" Height="72" HorizontalAlignment="Left" Margin="3,72,0,0" Name="button2" VerticalAlignment="Top" Width="451" Click="button2_Click" />
+                <Grid x:Name="ChallengesGrid">
+                    <Button Content="Challenge 1 (Finished)" Height="72" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Top" Width="456" Click="button1_Click" />
+                    <Button Content="Challenge 1 (In Progress)" Height="72" HorizontalAlignment="Left" Margin="3,72,0,0" x:Name="button2" VerticalAlignment="Top" Width="451" Click="button2_Click" />
                 </Grid>
             </controls:PivotItem>
 
             <!--Pivot item two-->
             <controls:PivotItem Header="Ranking">
-                <Grid Name="RankingGrid" />
+                <Grid x:Name="RankingGrid" />
             </controls:PivotItem>
 
             <!--Pivot item three-->
             <controls:PivotItem Header="Profile">
-                <Grid Name="ProfileGrid">
-                    <Button Content="Logout" Height="72" HorizontalAlignment="Left" Margin="150,88,0,0" Name="button3" VerticalAlignment="Top" Width="160" Click="button3_Click" />
+                <Grid x:Name="ProfileGrid">
+                    <Button Content="Logout" Height="60" HorizontalAlignment="Left" Margin="290,110,0,0" x:Name="logoutBtn" VerticalAlignment="Top" Width="160" Click="logoutBtn_Click" FontSize="16" Padding="0,0,0,3" />
+                    <Image Height="140" HorizontalAlignment="Left" Margin="15,15,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="140" Source="/BeatIt!;component/Images/profileImage.jpg" />
+                    <TextBlock Height="50" HorizontalAlignment="Left" Margin="170,15,0,0" x:Name="nameTxtBlock" Text="Juan Perez" VerticalAlignment="Top" Width="260" FontSize="32" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="15,190,0,0" x:Name="settingsTxtBlock" Text="SETTINGS" VerticalAlignment="Top" Width="410" FontSize="22" Foreground="Green" />
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="169,84,0,0" x:Name="countryTxtBlock" Text="Uruguay" VerticalAlignment="Top" Width="260" FontSize="18" />
+                    <TextBlock FontSize="18" Height="30" HorizontalAlignment="Left" Margin="170,60,0,0" x:Name="emailTextBlock" Text="jperez@gmail.com" VerticalAlignment="Top" Width="260" />
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>

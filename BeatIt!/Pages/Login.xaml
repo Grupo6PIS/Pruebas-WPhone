@@ -16,19 +16,14 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="768*"/>
         </Grid.RowDefinitions>
-
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="BeatIt!" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="Login" Height="72" HorizontalAlignment="Left" Margin="149,419,0,0" Name="button1" VerticalAlignment="Top" Width="160" Click="button1_Click" />
+        
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0">
+            <Button Content="Login with Facebook" Height="72" HorizontalAlignment="Left" Margin="103,611,0,0" Name="loginBtn" VerticalAlignment="Top" Width="280" Click="loginBtn_Click" FontSize="20" />
+            <Image Height="220" HorizontalAlignment="Left" Margin="133,285,0,0" Name="logoImage" Stretch="Fill" VerticalAlignment="Top" Width="220" Source="/BeatIt!;component/Images/Desafios-V2-HD.png" />
+            <TextBlock Height="123" Margin="103,43,97,0" Name="titleTextBlock" Text="BeatIt!" VerticalAlignment="Top" FontSize="100" TextAlignment="Center" FontFamily="Segoe WP SemiLight" />
         </Grid>
     </Grid>
  

@@ -30,7 +30,7 @@ namespace BeatIt_.Pages
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/BeatIt!;component/Pages/Home.xaml", UriKind.Relative));
         }
