@@ -23,7 +23,7 @@ namespace BeatIt_.AppCode.Challenges
         public delegate void getCurrentSpeed(double speed);
         public event getCurrentSpeed speedChange;
 
-        public void UsainBolt()
+        public UsainBolt()
         {
             gps = new GeoCoordinateWatcher();
             gps.PositionChanged += positionChanged;
