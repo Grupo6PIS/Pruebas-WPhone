@@ -18,6 +18,7 @@ namespace BeatIt_.AppCode.Challenges
         private GeoCoordinateWatcher gps;
         private double velocidadActual;
         private double velocidadMaxima;
+        private int puntaje = 0;
 
 
         public delegate void getCurrentSpeed(double speed);
@@ -46,17 +47,14 @@ namespace BeatIt_.AppCode.Challenges
             return this.velocidadMaxima;
         }
 
+        public int getPuntaje()
+        {
+            return Convert.ToInt32(this.velocidadMaxima) * 2;
+        }
+
         
         private void positionChanged(object obj, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            //this.velocidadActual = gps.Position.Location.Speed;
-
-            /*
-             * UB.speedChange+= metodoDeMartin,
-             * metodoDemartin( double speed){
-             * }
-             * 
-             * */
 
             if (speedChange != null)
             {
