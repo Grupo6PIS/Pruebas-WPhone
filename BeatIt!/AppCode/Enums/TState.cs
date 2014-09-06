@@ -11,8 +11,8 @@ using System.Windows.Shapes;
 
 namespace BeatIt_.AppCode.Enums
 {
-    public class DTChallenge
+    public class TState
     {
-         
+        public static enum STATE { NO_INICIADO, EN_PROGRESO, FINALIZADO };
     }
 }

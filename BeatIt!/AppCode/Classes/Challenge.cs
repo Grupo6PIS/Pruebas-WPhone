@@ -13,8 +13,32 @@ namespace BeatIt_.AppCode.Classes
 {
     public class Challenge
     {
-        private string name;
-        private string descripcion;
-        private int nivel;
+        protected string name;
+        protected string descripcion;
+        protected DateTime dateInit;
+        private State estado;
+        private Round ronda;
+
+        public Challenge()
+        {
+            dateInit = new DateTime();
+        }
+
+        public string getName()
+        {
+            return name;
+        }
+
+        public string getDescripcion()
+        {
+            return descripcion;
+        }
+
+        public DateTime getFechaDeInicio()
+        {
+            return dateInit;
+        }
+
+
     }
 }

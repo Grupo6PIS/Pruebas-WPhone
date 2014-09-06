@@ -11,8 +11,8 @@ using System.Windows.Shapes;
 
 namespace BeatIt_.AppCode.Enums
 {
-    public class DTChallenge
+    public class ChallengeType
     {
-         
+        public static enum CHALLENGE_TYPE { USAIN_BOLT };
     }
 }

@@ -10,36 +10,47 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using BeatIt_.AppCode.Classes;
 using System.Device.Location;
+using BeatIt_.AppCode.Interfaces.Challenges;
 
 namespace BeatIt_.AppCode.Challenges
 {
-    public class UsainBolt : Challenge
+    public class UsainBolt : Challenge, IUsainBolt 
     {
+
+        public event IUsainBolt.getCurrentState stateChanged;
+        public event IUsainBolt.getCurrentSpeed speedChanged;        
+
+        private static int VELOCIDAD_MINIMA = 5;
         private GeoCoordinateWatcher gps;
         private double velocidadActual;
         private double velocidadMaxima;
-        private int puntaje = 0;
-
-
-        public delegate void getCurrentSpeed(double speed);
-        public event getCurrentSpeed speedChange;
+        private int puntaje = 0;        
 
         public UsainBolt()
         {
+            this.name = "Usain Bolt";
+            this.descripcion = "Se deberrá correr una velocidad minima de " + VELOCIDAD_MINIMA + "Km/h";
+
             gps = new GeoCoordinateWatcher();
             gps.PositionChanged += positionChanged;
+            gps.StatusChanged += stateChange;
 
             this.velocidadActual = 0;
             this.velocidadMaxima = 0;
         }
         
         
-        public void startGPS()
+        public bool startGPS()
         {
-            if (gps != null)
+            try
             {
                 gps.Start();
             }
+            catch(Exception e)
+            {
+                return false;
+            }
+            return true;            
         }
 
         public double geMaxSpeed()
@@ -56,9 +67,9 @@ namespace BeatIt_.AppCode.Challenges
         private void positionChanged(object obj, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
 
-            if (speedChange != null)
+            if (speedChanged != null)
             {
-                speedChange(gps.Position.Location.Speed);
+                speedChanged(gps.Position.Location.Speed);
             }
 
             if (this.velocidadActual > this.velocidadMaxima)
@@ -66,5 +77,13 @@ namespace BeatIt_.AppCode.Challenges
                 this.velocidadMaxima = this.velocidadActual;                
             }
         }
+
+        private void stateChange(object obj, GeoPositionStatusChangedEventArgs e)
+        {
+            if (stateChanged != null)
+            {
+                stateChanged(e.Status); 
+            }
+        }        
     }
 }
