@@ -67,10 +67,15 @@
     </Compile>
     <Compile Include="AppCode\Challenges\UsainBolt.cs" />
     <Compile Include="AppCode\Classes\Challenge.cs" />
+    <Compile Include="AppCode\Classes\Round.cs" />
     <Compile Include="AppCode\Classes\State.cs" />
+    <Compile Include="AppCode\Classes\User.cs" />
     <Compile Include="AppCode\Controllers\ChallengeController.cs" />
+    <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
-    <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
+    <Compile Include="AppCode\Enums\TState.cs" />
+    <Compile Include="AppCode\Interfaces\Challenges\IUsainBolt.cs" />
+    <Compile Include="AppCode\Interfaces\Controllers\IChallengeController.cs" />
     <Compile Include="Pages\Challenge1.xaml.cs">
       <DependentUpon>Challenge1.xaml</DependentUpon>
     </Compile>
