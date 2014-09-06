@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace BeatIt_.AppCode.Enums
+namespace BeatIt_.AppCode.Datatypes
 {
     public class DTChallenge
     {

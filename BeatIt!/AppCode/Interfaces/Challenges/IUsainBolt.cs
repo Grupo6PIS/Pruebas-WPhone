@@ -6,18 +6,14 @@ using System.Device.Location;
 
 namespace BeatIt_.AppCode.Interfaces.Challenges
 {
+    
     interface IUsainBolt
     {
+        bool startGPS();
 
-        public delegate void getCurrentSpeed(double speed);
-        public delegate void getCurrentState(GeoPositionStatus gs);
-        // Disabled, Initializing, NoData, NoData estados posibles de GeoPositionStatus
+        double geMaxSpeed();
 
-        public bool startGPS();
-
-        public double geMaxSpeed();
-
-        public int getPuntaje();
+        int getPuntaje();
 
     }
 }

@@ -13,6 +13,6 @@ namespace BeatIt_.AppCode.Enums
 {
     public class TState
     {
-        public static enum STATE { NO_INICIADO, EN_PROGRESO, FINALIZADO };
+        public enum STATE { NO_INICIADO, EN_PROGRESO, FINALIZADO };
     }
 }

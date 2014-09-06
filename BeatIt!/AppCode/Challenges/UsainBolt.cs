@@ -17,8 +17,12 @@ namespace BeatIt_.AppCode.Challenges
     public class UsainBolt : Challenge, IUsainBolt 
     {
 
-        public event IUsainBolt.getCurrentState stateChanged;
-        public event IUsainBolt.getCurrentSpeed speedChanged;        
+        public delegate void getCurrentSpeed(double speed);
+        public delegate void getCurrentState(GeoPositionStatus gs);
+        // Disabled, Initializing, NoData, NoData estados posibles de GeoPositionStatus
+
+        public event getCurrentState stateChanged;
+        public event getCurrentSpeed speedChanged;        
 
         private static int VELOCIDAD_MINIMA = 5;
         private GeoCoordinateWatcher gps;
