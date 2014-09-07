@@ -74,8 +74,10 @@
     <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
     <Compile Include="AppCode\Enums\TState.cs" />
+    <Compile Include="AppCode\Interfaces\Challenges\IChallenge.cs" />
     <Compile Include="AppCode\Interfaces\Challenges\IUsainBolt.cs" />
     <Compile Include="AppCode\Interfaces\Controllers\IChallengeController.cs" />
+    <Compile Include="AppCode\Interfaces\IObserver.cs" />
     <Compile Include="Pages\Challenge1.xaml.cs">
       <DependentUpon>Challenge1.xaml</DependentUpon>
     </Compile>

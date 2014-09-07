@@ -7,7 +7,7 @@ using System.Device.Location;
 namespace BeatIt_.AppCode.Interfaces.Challenges
 {
     
-    interface IUsainBolt
+    interface IUsainBolt : IChallenge
     {
         bool startGPS();
 
@@ -15,5 +15,6 @@ namespace BeatIt_.AppCode.Interfaces.Challenges
 
         int getPuntaje();
 
+        void registObserver(IObserver observer);
     }
 }

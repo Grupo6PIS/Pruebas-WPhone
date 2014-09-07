@@ -8,10 +8,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using BeatIt_.AppCode.Interfaces.Challenges;
 
 namespace BeatIt_.AppCode.Classes
 {
-    public class Challenge
+    public class Challenge : IChallenge
     {
         protected string name;
         protected string descripcion;

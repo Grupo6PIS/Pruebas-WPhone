@@ -11,6 +11,8 @@ using System.Windows.Shapes;
 using BeatIt_.AppCode.Classes;
 using System.Device.Location;
 using BeatIt_.AppCode.Interfaces.Challenges;
+using System.Collections.Generic;
+using BeatIt_.AppCode.Interfaces;
 
 namespace BeatIt_.AppCode.Challenges
 {
@@ -28,7 +30,9 @@ namespace BeatIt_.AppCode.Challenges
         private GeoCoordinateWatcher gps;
         private double velocidadActual;
         private double velocidadMaxima;
-        private int puntaje = 0;        
+        private int puntaje = 0;
+
+        private List<IObserver> observadores;
 
         public UsainBolt()
         {
@@ -41,6 +45,8 @@ namespace BeatIt_.AppCode.Challenges
 
             this.velocidadActual = 0;
             this.velocidadMaxima = 0;
+
+            this.observadores = new List<IObserver>();
         }
         
         
@@ -74,6 +80,9 @@ namespace BeatIt_.AppCode.Challenges
             if (speedChanged != null)
             {
                 speedChanged(gps.Position.Location.Speed);
+
+                foreach (IObserver io in this.observadores)
+                    io.actualizar(gps.Position.Location.Speed);
             }
 
             if (this.velocidadActual > this.velocidadMaxima)
@@ -88,6 +97,14 @@ namespace BeatIt_.AppCode.Challenges
             {
                 stateChanged(e.Status); 
             }
-        }        
+        }
+
+
+        public void registObserver(IObserver observer)
+        {
+            this.observadores.Add(observer);
+        }
+
+        // Faltaria desregistrar
     }
 }
