@@ -13,9 +13,9 @@ using Microsoft.Phone.Controls;
 
 namespace BeatIt_.Pages
 {
-    public partial class Login : PhoneApplicationPage
+    public partial class Home : PhoneApplicationPage
     {
-        public Login()
+        public Home()
         {
             InitializeComponent();
 
@@ -30,9 +30,19 @@ namespace BeatIt_.Pages
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
         }
 
-        private void loginBtn_Click(object sender, RoutedEventArgs e)
+        private void button1_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/BeatIt!;component/Pages/Home.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml", UriKind.Relative));
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Challenge1.xaml", UriKind.Relative));
+        }
+
+        private void logoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Login.xaml", UriKind.Relative));
         }
     }
 }
