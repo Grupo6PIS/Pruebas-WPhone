@@ -23,8 +23,9 @@
             <!--Pivot item one-->
             <controls:PivotItem Header="{Binding Path=AppResources.HomePage_ChallengesPivotTitle, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer x:Name="ChallengesGrid" Margin="12,0,12,0">
-                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="860" Margin="10,0,10,0">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1050" Margin="10,0,10,0">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="210" />
                             <RowDefinition Height="210" />
                             <RowDefinition Height="210" />
                             <RowDefinition Height="210" />
@@ -45,16 +46,27 @@
                         
                         <Rectangle Fill="#FF008A00"  Grid.Row="1" Grid.Column="0" Margin="2,8,8,8" />
                         <Image Name="Ch3Image"  Grid.Row="1" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Correr.png" />
+                        
                         <Rectangle Fill="#FFE3C900"  Grid.Row="1" Grid.Column="1" Margin="8,8,2,8" />
                         <Image Name="Ch4Image"  Grid.Row="1" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/camara.png" />
-                        <Rectangle Fill="#FFAA00FF"  Grid.Row="2" Grid.Column="0" Margin="2,8,8,2" />
+                        
+                        <Rectangle Fill="#FFAA00FF"  Grid.Row="2" Grid.Column="0" Margin="2,8,8,8" />
                         <Image Name="Ch5Image"  Grid.Row="2" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Mapa.png" />
-                        <Rectangle Fill="#FFE21300"  Grid.Row="2" Grid.Column="1" Margin="8,8,2,2" />
+                        
+                        <Rectangle Fill="#FFE21300"  Grid.Row="2" Grid.Column="1" Margin="8,8,2,8" />
                         <Image Name="Ch6Image"  Grid.Row="2" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Gps.png" />
-                        <Rectangle Fill="#FF008A00"  Grid.Row="3" Grid.Column="0" Margin="8,8,2,2" />
+                        
+                        <Rectangle Fill="#FFFA6800"  Grid.Row="3" Grid.Column="0" Margin="2,8,8,8" />
                         <Image Name="Ch7Image"  Grid.Row="3" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Musica.png" />
-                        <Rectangle Fill="#FF1CA1E3"  Grid.Row="3" Grid.Column="1" Margin="8,8,2,2" />
-                        <Image Name="Ch8Image"  Grid.Row="3" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Correr.png" />
+                        
+                        <Rectangle Fill="#FF008A00"  Grid.Row="3" Grid.Column="1" Margin="8,8,2,8" />
+                        <Image Name="Ch8Image"  Grid.Row="3" Grid.Column="1" Margin="2,2,8,2" Source="/BeatIt!;component/Images/Correr.png" />
+
+                        <Rectangle Fill="#FF1CA1E3"  Grid.Row="4" Grid.Column="0" Margin="2,8,8,8" />
+                        <Image Name="Ch9Image"  Grid.Row="4" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Jugar.png" />
+                        
+                        <Rectangle Fill="#FFE3C900"  Grid.Row="4" Grid.Column="1" Margin="8,8,2,8" />
+                        <Image Name="Ch10Image"  Grid.Row="4" Grid.Column="1" Margin="2,2,8,2" Source="/BeatIt!;component/Images/camara.png" />
                         
                     </Grid>
                 </ScrollViewer>
