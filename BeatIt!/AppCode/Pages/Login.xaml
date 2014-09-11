@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
         
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0">
-            <Button Content="{Binding Path=AppResources.loginBtn_title, Source={StaticResource LocalizedStrings}}" Height="72" HorizontalAlignment="Left" Margin="103,611,0,0" Name="loginBtn" VerticalAlignment="Top" Width="280" Click="loginBtn_Click" FontSize="20" />
+            <Button Content="{Binding Path=AppResources.LoginPage_LoginBtnTitle, Source={StaticResource LocalizedStrings}}" Height="72" HorizontalAlignment="Left" Margin="103,611,0,0" Name="loginBtn" VerticalAlignment="Top" Width="280" Click="loginBtn_Click" FontSize="20" />
             <Image Height="220" HorizontalAlignment="Left" Margin="133,285,0,0" Name="logoImage" Stretch="Fill" VerticalAlignment="Top" Width="220" Source="/BeatIt!;component/Images/Desafios-V2-HD.png" />
             <TextBlock Height="123" Margin="103,43,97,0" Name="titleTextBlock" Text="BeatIt!" VerticalAlignment="Top" FontSize="100" TextAlignment="Center" FontFamily="Segoe WP SemiLight" />
         </Grid>

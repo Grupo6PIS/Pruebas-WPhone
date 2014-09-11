@@ -61,11 +61,56 @@ namespace BeatIt_.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Challenges.
+        /// </summary>
+        public static string HomePage_ChallengesPivotTitle {
+            get {
+                return ResourceManager.GetString("HomePage_ChallengesPivotTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string HomePage_LogoutBtnTitle {
+            get {
+                return ResourceManager.GetString("HomePage_LogoutBtnTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string HomePage_ProfilePivotTitle {
+            get {
+                return ResourceManager.GetString("HomePage_ProfilePivotTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ranking.
+        /// </summary>
+        public static string HomePage_RankingPivotTitle {
+            get {
+                return ResourceManager.GetString("HomePage_RankingPivotTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string HomePage_SettingsTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("HomePage_SettingsTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login with Facebook.
         /// </summary>
-        public static string loginBtn_title {
+        public static string LoginPage_LoginBtnTitle {
             get {
-                return ResourceManager.GetString("loginBtn_title", resourceCulture);
+                return ResourceManager.GetString("LoginPage_LoginBtnTitle", resourceCulture);
             }
         }
     }

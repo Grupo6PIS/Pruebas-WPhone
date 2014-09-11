@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="loginBtn_title" xml:space="preserve">
+  <data name="HomePage_ChallengesPivotTitle" xml:space="preserve">
+    <value>Challenges</value>
+  </data>
+  <data name="HomePage_LogoutBtnTitle" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="HomePage_ProfilePivotTitle" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="HomePage_RankingPivotTitle" xml:space="preserve">
+    <value>Ranking</value>
+  </data>
+  <data name="HomePage_SettingsTxtBlockTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="LoginPage_LoginBtnTitle" xml:space="preserve">
     <value>Login with Facebook</value>
   </data>
 </root>
