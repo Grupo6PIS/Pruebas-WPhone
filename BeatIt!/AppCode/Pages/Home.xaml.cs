@@ -30,19 +30,22 @@ namespace BeatIt_.Pages
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml", UriKind.Relative));
-        }
 
-        private void button2_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Challenge1.xaml", UriKind.Relative));
-        }
 
         private void logoutBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Login.xaml", UriKind.Relative));
+        }
+      
+
+        private void hyperlinkButton1_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Challenge1.xaml", UriKind.Relative));
+        }
+
+        private void hyperlinkButton2_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml", UriKind.Relative));            
         }
     }
 }

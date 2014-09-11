@@ -15,16 +15,49 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <controls:Pivot Title="BeatIt!">
+        <controls:Pivot Title="BeatIt!" Margin="10,10,10,10">
             <!--Pivot item one-->
             <controls:PivotItem Header="Challenges">
-                <Grid x:Name="ChallengesGrid">
-                    <Button Content="Challenge 1 (Finished)" Height="72" HorizontalAlignment="Left" x:Name="button1" VerticalAlignment="Top" Width="456" Click="button1_Click" />
-                    <Button Content="Challenge 1 (In Progress)" Height="72" HorizontalAlignment="Left" Margin="3,72,0,0" x:Name="button2" VerticalAlignment="Top" Width="451" Click="button2_Click" />
-                </Grid>
+                <ScrollViewer x:Name="ChallengesGrid" Margin="12,0,12,0">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="860" Margin="10,0,10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="210" />
+                            <RowDefinition Height="210" />
+                            <RowDefinition Height="210" />
+                            <RowDefinition Height="210" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="210" />
+                            <ColumnDefinition Width="210" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Rectangle Fill="#FFFA6800"  Grid.Row="0" Grid.Column="0" Margin="2,2,8,8" />
+                        <Image Name="Ch1Image"  Grid.Row="0" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Musica.png" />
+                        <HyperlinkButton Content="" Grid.Row="0" Grid.Column="0" Height="200" Margin="0" Name="hyperlinkButton1" Width="200" Click="hyperlinkButton1_Click" />
+                        
+                        <Rectangle Fill="#FF1CA1E3"  Grid.Row="0" Grid.Column="1" Margin="8,2,2,8" />
+                        <Image Name="Ch2Image"  Grid.Row="0" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Jugar.png" DataContext="{Binding}" />
+                        <HyperlinkButton Content="" Grid.Row="0" Grid.Column="1" Height="200" Margin="0" Name="hyperlinkButton2" Width="200" Click="hyperlinkButton2_Click" />
+                        
+                        <Rectangle Fill="#FF008A00"  Grid.Row="1" Grid.Column="0" Margin="2,8,8,8" />
+                        <Image Name="Ch3Image"  Grid.Row="1" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Correr.png" />
+                        <Rectangle Fill="#FFE3C900"  Grid.Row="1" Grid.Column="1" Margin="8,8,2,8" />
+                        <Image Name="Ch4Image"  Grid.Row="1" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/camara.png" />
+                        <Rectangle Fill="#FFAA00FF"  Grid.Row="2" Grid.Column="0" Margin="2,8,8,2" />
+                        <Image Name="Ch5Image"  Grid.Row="2" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Mapa.png" />
+                        <Rectangle Fill="#FFE21300"  Grid.Row="2" Grid.Column="1" Margin="8,8,2,2" />
+                        <Image Name="Ch6Image"  Grid.Row="2" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Gps.png" />
+                        <Rectangle Fill="#FF008A00"  Grid.Row="3" Grid.Column="0" Margin="8,8,2,2" />
+                        <Image Name="Ch7Image"  Grid.Row="3" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Musica.png" />
+                        <Rectangle Fill="#FF1CA1E3"  Grid.Row="3" Grid.Column="1" Margin="8,8,2,2" />
+                        <Image Name="Ch8Image"  Grid.Row="3" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Correr.png" />
+                        
+                    </Grid>
+                </ScrollViewer>
             </controls:PivotItem>
 
             <!--Pivot item two-->
@@ -45,6 +78,7 @@
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
+
 
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
