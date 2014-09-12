@@ -54,6 +54,7 @@
       <HintPath>Librerias\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Phone.Reactive" />
     <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -74,10 +75,7 @@
     <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
     <Compile Include="AppCode\Enums\TState.cs" />
-    <Compile Include="AppCode\Interfaces\Challenges\IChallenge.cs" />
-    <Compile Include="AppCode\Interfaces\Challenges\IUsainBolt.cs" />
-    <Compile Include="AppCode\Interfaces\Controllers\IChallengeController.cs" />
-    <Compile Include="AppCode\Interfaces\IObserver.cs" />
+    <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using BeatIt_.AppCode.Classes;
 using BeatIt_.AppCode.Challenges;
 using BeatIt_.AppCode.Enums;
-using BeatIt_.AppCode.Interfaces.Challenges;
 using BeatIt_.AppCode.Interfaces.Controllers;
 
 namespace BeatIt_.AppCode.Controllers
@@ -110,7 +109,7 @@ namespace BeatIt_.AppCode.Controllers
         /// </summary>
         /// <param name="type">Tipo de desafio del cual se requiere su interface.</param>
         /// <returns></returns>
-        public IChallenge getIChallenge(ChallengeType.CHALLENGE_TYPE type)
+        public Challenge getChallenge(ChallengeType.CHALLENGE_TYPE type)
         {
             return this.chalengs[type];
         }
