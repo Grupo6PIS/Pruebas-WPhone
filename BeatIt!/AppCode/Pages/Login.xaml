@@ -21,9 +21,10 @@
         </Grid.RowDefinitions>
         
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0">
-            <Button Content="{Binding Path=AppResources.LoginPage_LoginBtnTitle, Source={StaticResource LocalizedStrings}}" Height="72" HorizontalAlignment="Center" Name="loginBtn" VerticalAlignment="Bottom" Width="280" Click="loginBtn_Click" FontSize="20" Background="#FF3B5998" BorderThickness="2" UseLayoutRounding="True" Margin="0,0,0,100" />
-            <Image Height="220" HorizontalAlignment="Center" Name="logoImage" Stretch="Fill" VerticalAlignment="Center" Width="220" Source="/BeatIt!;component/Images/Desafios-V2-HD.png" />
-            <TextBlock Height="123" Name="titleTextBlock" Text="BeatIt!" VerticalAlignment="Top" FontSize="100" TextAlignment="Center" FontFamily="Segoe WP SemiLight" HorizontalAlignment="Center" Margin="0,50,0,0" />
+            <Button Content="{Binding Path=AppResources.LoginPage_LoginBtnTitle, Source={StaticResource LocalizedStrings}}" Height="72" HorizontalAlignment="Center" Name="loginBtn" VerticalAlignment="Bottom" Width="280" Click="loginBtn_Click" FontSize="20" Background="#FF3B5998" BorderThickness="2" UseLayoutRounding="True" Margin="0,0,0,80" />
+            <Image Height="80" HorizontalAlignment="Left" Name="logoImage" Stretch="Fill" VerticalAlignment="Center" Width="80" Source="/BeatIt!;component/Images/Desafios-V2-HD.png" Margin="50,80,0,600" />
+            <TextBlock Height="123" Name="titleTextBlock" Text="BeatIt!" VerticalAlignment="Top" FontSize="100" TextAlignment="Center" FontFamily="Segoe WP SemiLight" HorizontalAlignment="Center" Margin="100,50,0,0" />
+            <TextBlock Height="350" HorizontalAlignment="Left" Margin="50,215,0,0" Name="textBlock1" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." VerticalAlignment="Top" Width="377" TextWrapping="Wrap" TextAlignment="Left" FontSize="21" />
         </Grid>
     </Grid>
  
