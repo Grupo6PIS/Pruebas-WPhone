@@ -35,38 +35,38 @@
                             <ColumnDefinition Width="210" />
                             <ColumnDefinition Width="210" />
                         </Grid.ColumnDefinitions>
-                        
-                        <Rectangle Fill="#FFFA6800"  Grid.Row="0" Grid.Column="0" Margin="2,2,8,8" />
-                        <Image Name="Ch1Image"  Grid.Row="0" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Musica.png" />
-                        <HyperlinkButton Content="" Grid.Row="0" Grid.Column="0" Height="200" Margin="0" Name="hyperlinkButton1" Width="200" Click="hyperlinkButton1_Click" />
-                        
-                        <Rectangle Fill="#FF1CA1E3"  Grid.Row="0" Grid.Column="1" Margin="8,2,2,8" />
-                        <Image Name="Ch2Image"  Grid.Row="0" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Jugar.png" DataContext="{Binding}" />
-                        <HyperlinkButton Content="" Grid.Row="0" Grid.Column="1" Height="200" Margin="0" Name="hyperlinkButton2" Width="200" Click="hyperlinkButton2_Click" />
-                        
-                        <Rectangle Fill="#FF008A00"  Grid.Row="1" Grid.Column="0" Margin="2,8,8,8" />
-                        <Image Name="Ch3Image"  Grid.Row="1" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Correr.png" />
-                        
-                        <Rectangle Fill="#FFE3C900"  Grid.Row="1" Grid.Column="1" Margin="8,8,2,8" />
-                        <Image Name="Ch4Image"  Grid.Row="1" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/camara.png" />
-                        
-                        <Rectangle Fill="#FFAA00FF"  Grid.Row="2" Grid.Column="0" Margin="2,8,8,8" />
-                        <Image Name="Ch5Image"  Grid.Row="2" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Mapa.png" />
-                        
-                        <Rectangle Fill="#FFE21300"  Grid.Row="2" Grid.Column="1" Margin="8,8,2,8" />
-                        <Image Name="Ch6Image"  Grid.Row="2" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Gps.png" />
-                        
-                        <Rectangle Fill="#FFFA6800"  Grid.Row="3" Grid.Column="0" Margin="2,8,8,8" />
-                        <Image Name="Ch7Image"  Grid.Row="3" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Musica.png" />
-                        
-                        <Rectangle Fill="#FF008A00"  Grid.Row="3" Grid.Column="1" Margin="8,8,2,8" />
-                        <Image Name="Ch8Image"  Grid.Row="3" Grid.Column="1" Margin="2,2,8,2" Source="/BeatIt!;component/Images/Correr.png" />
 
-                        <Rectangle Fill="#FF1CA1E3"  Grid.Row="4" Grid.Column="0" Margin="2,8,8,8" />
-                        <Image Name="Ch9Image"  Grid.Row="4" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Jugar.png" />
+                        <Rectangle Fill="#FF008A00"  Grid.Row="0" Grid.Column="0" Margin="2,2,8,8" />
+                        <Image Name="Ch1Image"  Grid.Row="0" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Correr.png" />
+                        <HyperlinkButton Content="" Grid.Row="0" Grid.Column="0" Height="200" Margin="0" Name="hyperlinkButton1" Width="200" Click="hyperlinkButton1_Click" Background="#00FF0000" IsEnabled="True" />
                         
-                        <Rectangle Fill="#FFE3C900"  Grid.Row="4" Grid.Column="1" Margin="8,8,2,8" />
-                        <Image Name="Ch10Image"  Grid.Row="4" Grid.Column="1" Margin="2,2,8,2" Source="/BeatIt!;component/Images/camara.png" />
+                        <Rectangle Fill="#3C1CA1E3"  Grid.Row="0" Grid.Column="1" Margin="8,2,2,8" />
+                        <Image Name="Ch2Image"  Grid.Row="0" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Jugar.png" DataContext="{Binding}" OpacityMask="#19000000" />
+                        <HyperlinkButton Content="" Grid.Row="0" Grid.Column="1" Height="200" Margin="0" Name="hyperlinkButton2" Width="200" Click="hyperlinkButton2_Click" IsEnabled="True" />
+                        
+                        <Rectangle Fill="#3CFA6800"  Grid.Row="1" Grid.Column="0" Margin="2,8,8,8" />
+                        <Image Name="Ch3Image"  Grid.Row="1" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Musica.png" OpacityMask="#19000000" />
+                        
+                        <Rectangle Fill="#3CE3C900"  Grid.Row="1" Grid.Column="1" Margin="8,8,2,8" />
+                        <Image Name="Ch4Image"  Grid.Row="1" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/camara.png" OpacityMask="#19000000" />
+                        
+                        <Rectangle Fill="#3CAA00FF"  Grid.Row="2" Grid.Column="0" Margin="2,8,8,8" />
+                        <Image Name="Ch5Image"  Grid.Row="2" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Mapa.png" OpacityMask="#19000000" />
+                        
+                        <Rectangle Fill="#3CE21300"  Grid.Row="2" Grid.Column="1" Margin="8,8,2,8" />
+                        <Image Name="Ch6Image"  Grid.Row="2" Grid.Column="1" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Gps.png" OpacityMask="#19000000" />
+                        
+                        <Rectangle Fill="#3CFA6800"  Grid.Row="3" Grid.Column="0" Margin="2,8,8,8" />
+                        <Image Name="Ch7Image"  Grid.Row="3" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Musica.png" OpacityMask="#19000000" />
+                        
+                        <Rectangle Fill="#3C008A00"  Grid.Row="3" Grid.Column="1" Margin="8,8,2,8" />
+                        <Image Name="Ch8Image"  Grid.Row="3" Grid.Column="1" Margin="2,2,8,2" Source="/BeatIt!;component/Images/Correr.png" OpacityMask="#19000000" />
+
+                        <Rectangle Fill="#3C1CA1E3"  Grid.Row="4" Grid.Column="0" Margin="2,8,8,8" />
+                        <Image Name="Ch9Image"  Grid.Row="4" Grid.Column="0" Margin="2,2,8,8" Source="/BeatIt!;component/Images/Jugar.png" OpacityMask="#19000000" />
+                        
+                        <Rectangle Fill="#3CE3C900"  Grid.Row="4" Grid.Column="1" Margin="8,8,2,8" />
+                        <Image Name="Ch10Image"  Grid.Row="4" Grid.Column="1" Margin="2,2,8,2" Source="/BeatIt!;component/Images/camara.png" OpacityMask="#19000000" />
                         
                     </Grid>
                 </ScrollViewer>
