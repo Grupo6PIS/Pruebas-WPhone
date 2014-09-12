@@ -30,8 +30,6 @@ namespace BeatIt_.Pages
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
         }
 
-
-
         private void logoutBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Login.xaml", UriKind.Relative));
@@ -46,6 +44,12 @@ namespace BeatIt_.Pages
         private void hyperlinkButton2_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml", UriKind.Relative));            
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            base.OnBackKeyPress(e); 
         }
     }
 }
