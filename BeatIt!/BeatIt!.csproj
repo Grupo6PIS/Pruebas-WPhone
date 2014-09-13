@@ -74,7 +74,6 @@
     <Compile Include="AppCode\Controllers\ChallengeController.cs" />
     <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
-    <Compile Include="AppCode\Enums\TState.cs" />
     <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>

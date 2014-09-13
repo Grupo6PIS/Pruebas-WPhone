@@ -63,7 +63,7 @@ namespace BeatIt_.AppCode.Controllers
 
             return ChallengeController.instance;
         }
-        
+
 
 
 
@@ -80,18 +80,11 @@ namespace BeatIt_.AppCode.Controllers
 
             try
             {
-                foreach (KeyValuePair<ChallengeType.CHALLENGE_TYPE,Challenge> ch in this.chalengs)
+                foreach (KeyValuePair<ChallengeType.CHALLENGE_TYPE, Challenge> ch in this.chalengs)
                 {
-                    // Desprolijo, la clase Challenge tiene que tener un getDTChallenge.
-                    DTChallenge DTUsainBolt = new DTChallenge(ChallengeType.ToString(ch.Key), 
-                                                              ch.Value.getName(), 
-                                                              ch.Value.getDescripcion(), 
-                                                              0 /* Sale de la ronda */, 
-                                                              0 /* Sale de la ronda*/, 
-                                                              TState.STATE.NO_INICIADO /*Le asigne uno, pero en realidad sale del state asociado.*/);
-
-                    desafiosDeLaRonda.Add(DTUsainBolt);
-                }                
+                    desafiosDeLaRonda.Add(ch.Value.getDTChallenge(fecha)); // para cada desafio que el controlador tenga, agregamos el DTChallenge 
+                    // generado para el desafio en la ronda correspondiente a la fecha "fecha".
+                }
             }
             catch (Exception)
             {
@@ -113,5 +106,5 @@ namespace BeatIt_.AppCode.Controllers
         {
             return this.chalengs[type];
         }
-    }    
+    }
 }

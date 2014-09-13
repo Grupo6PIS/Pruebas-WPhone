@@ -14,27 +14,64 @@ namespace BeatIt_.AppCode.Classes
 {
     public class State
     {
-
-        private TState estado;
-        private int puntate = 0;
+        private bool finished;
+        private int puntaje;
         private DateTime fechaDeInicio;
-        private User usuario;
+        private int currentAttempt;
+
+        private Round round;
+        private Challenge challenge;
 
 
-        public TState getEstado()
+        public State()
         {
-            return this.estado;
+            this.finished = false;
+            this.puntaje = 0;
+            this.fechaDeInicio = System.DateTime.Now;
+            this.currentAttempt = 0;
+        }
+
+
+
+
+        public bool getFinished()
+        {
+            return this.finished;
+        }
+
+        public void setFinished(bool finished)
+        {
+            this.finished = finished;
         }
 
         public int getPuntaje()
         {
-            return this.puntate;
+            return this.puntaje;
+        }
+
+        public void setPuntaje(int puntaje)
+        {
+            this.puntaje = puntaje;
         }
 
         public DateTime getFechaInicio()
         {
-            return fechaDeInicio;
+            return this.fechaDeInicio;
         }
 
+        public void setFechaInicio(DateTime fechaInicio)
+        {
+            this.fechaDeInicio = fechaInicio;
+        }
+
+        public int getCurrentAttempt()
+        {
+            return this.currentAttempt;
+        }
+
+        public void setCurrentAttempt(int attempt)
+        {
+            this.currentAttempt = attempt;
+        }
     }
 }
