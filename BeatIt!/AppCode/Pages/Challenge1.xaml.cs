@@ -38,6 +38,8 @@ namespace BeatIt_.Pages
         private DateTime startedTimeAux;               // Se utiliza para marcar el tiempo exacto en que comenzo a jugarse el desafio.
 
         private UsainBolt desafio;                     // Instancia del desafio que se esta corriendo.
+
+        private DateTime startToPlay;                  // Se utiliza para tener referencia temporal de en que ronda se comenzo a jugar el desafio.                  
         /******************************************************************************************************************/
 
 
@@ -74,6 +76,7 @@ namespace BeatIt_.Pages
             /***************************************************************************************************************/
             // INICIALIZAMOS LAS VARIABLES Y CARACTERISTICAS DEL DISPOSITIVO UTILIZADAS.
             /***************************************************************************************************************/
+            this.startToPlay = System.DateTime.Now;
 
             // TIMER
             this.timeInMinSpeed = new TimeSpan(0, 0, 0, 0, 0);
@@ -113,8 +116,8 @@ namespace BeatIt_.Pages
             // INICIALIZAMOS LAS ETIQUETAS.
             this.ShowTime.Text = (new TimeSpan(0, 0, 0, Convert.ToInt32(UsainBolt.TIEMPO_MINIMO_SEG), 0)).ToString("ss") + " s";
             this.ShowSpeed.Text = "0.00 km/h";
-            this.ShowST.Text = this.desafio.getDTChallenge(System.DateTime.Now).getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
-            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
+            this.ShowST.Text = this.desafio.getDTChallenge(this.startToPlay).getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
+            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido(this.startToPlay).ToString();
         }
 
         private void inicializarEtiquetas()
@@ -199,9 +202,10 @@ namespace BeatIt_.Pages
 
                         // AUMENTEAR LOS INENTOS EN 1.
 
+                        MessageBox.Show("Desafio NO Completado.");
                         // MOSTRAR MENSAJE DE DESAFIO SIN COMPLETAR!
-                        Thread.Sleep(5000); // Solo para mostrar los daros.
-
+                        Thread.Sleep(2000); // Solo para mostrar los daros.
+                        
                         // Volvemos a iniciar...
                         this.inicializar();
                     }
@@ -212,11 +216,13 @@ namespace BeatIt_.Pages
                         this.timer.Stop();
                         this.timerToCalculateSpeed.Stop();
                         this.gps.Stop();
+                        this.ShowTime.Text = Math.Round(UsainBolt.TIEMPO_MINIMO_SEG - this.timeInMinSpeed.TotalSeconds, 2).ToString("#.00") + " s";
 
-                        this.desafio.finish(this.timeInMinSpeed);
-
+                        this.desafio.finish(this.timeInMinSpeed, this.startToPlay);
                         // MOSTRAR MENSAJE DE DESAFIO COMPLETADO CON EXITO!!!!!!
-                        Thread.Sleep(5000); // Solo para mostrar los daros.
+                        MessageBox.Show("Desafío completado con exito!!! ha corrido " + this.timeInMinSpeed.TotalSeconds.ToString("#.00") + " s a la velocidad minima requerida.");
+                        Thread.Sleep(2000); // Solo para mostrar los daros.
+                        
 
                         this.inicializar();
                     }

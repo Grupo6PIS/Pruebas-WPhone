@@ -42,6 +42,10 @@ namespace BeatIt_.AppCode.Controllers
             // Luego, la lista de desafios asociadas a las correspondientes rondas, con sus correspondientes estados
             // se deberan levantar o bien de la persitencia local o bien del servidor.
             UsainBolt usain = new UsainBolt();
+
+            /// Aca habria que levantar el puntaje de el desafio ub.
+
+
             this.chalengs[ChallengeType.CHALLENGE_TYPE.USAIN_BOLT] = usain;
         }
 

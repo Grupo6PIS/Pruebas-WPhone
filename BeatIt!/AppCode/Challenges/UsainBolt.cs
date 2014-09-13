@@ -32,7 +32,7 @@ namespace BeatIt_.AppCode.Challenges
             this.states.Add(new State());
         }
 
-        public int getPuntajeObtenido()
+        public int getPuntajeObtenido(DateTime fecha)
         {
             // OJOOOOOO HARDCODEADO PARA EL PROTOTIPO, EL STATE HAY QUE OBTENERLO DE LA LISTA.
             List<State>.Enumerator e = this.states.GetEnumerator();
@@ -40,7 +40,7 @@ namespace BeatIt_.AppCode.Challenges
             return e.Current.getPuntaje();
         }
 
-        public void finish(TimeSpan timeSpan)
+        public void finish(TimeSpan timeSpan, DateTime fecha)
         {
             // OJOOOOOO HARDCODEADO PARA EL PROTOTIPO, EL STATE HAY QUE OBTENERLO DE LA LISTA.
             List<State>.Enumerator e = this.states.GetEnumerator();
@@ -49,6 +49,8 @@ namespace BeatIt_.AppCode.Challenges
             e.Current.setPuntaje(this.calculatePuntaje(timeSpan));
             e.Current.setFinished(true);
             e.Current.setCurrentAttempt(e.Current.getCurrentAttempt() + 1);
+            
+            // FALTARIA GUARDAR EL PUNTAJE.
         }
 
         private int calculatePuntaje(TimeSpan timeSpan)
