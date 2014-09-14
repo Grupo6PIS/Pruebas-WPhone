@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.IO.IsolatedStorage;
 using BeatIt_.AppCode.Classes;
 using System.Device.Location;
 using System.Collections.Generic;
@@ -29,6 +30,11 @@ namespace BeatIt_.AppCode.Challenges
             this.level = 0;
             this.maxAttempt = 0;
             this.states = new List<State>();
+
+            State state = new State();
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            state.setPuntaje(settings.Contains("UsainBoltScore") ? Int32.Parse( settings["UsainBoltScore"] as string) : 0);
+
             this.states.Add(new State());
         }
 
@@ -51,6 +57,14 @@ namespace BeatIt_.AppCode.Challenges
             e.Current.setCurrentAttempt(e.Current.getCurrentAttempt() + 1);
             
             // FALTARIA GUARDAR EL PUNTAJE.
+            IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+            if (!settings.Contains("UsainBoltScore"))
+            {
+                settings.Add("UsainBoltScore", e.Current.getPuntaje());
+            }
+
+            settings["UsainBoltScore"] = e.Current.getPuntaje();
+
         }
 
         private int calculatePuntaje(TimeSpan timeSpan)
