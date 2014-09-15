@@ -58,7 +58,7 @@ namespace BeatIt_.AppCode.Classes
             return this.maxAttempt;
         }
 
-        public DTChallenge getDTChallenge(DateTime Fecha)
+        public DTChallenge getDTChallenge()
         {
             List<State>.Enumerator e = this.states.GetEnumerator();
             e.MoveNext();
@@ -73,7 +73,8 @@ namespace BeatIt_.AppCode.Classes
                                    estadoActual.getFinished(),
                                    estadoActual.getCurrentAttempt(),
                                    estadoActual.getPuntaje(),
-                                   estadoActual.getFechaInicio());
+                                   estadoActual.getFechaInicio(),
+                                   estadoActual.getBestTime());
         }
     }
 }

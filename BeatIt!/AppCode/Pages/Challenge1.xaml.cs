@@ -22,28 +22,19 @@ namespace BeatIt_.Pages
 {
     public partial class Challenge1 : PhoneApplicationPage
     {
+
         /******************************************************************************************************************/
         private GeoCoordinateWatcher gps;              // Instancia del GPS que se utilizara para el calculo de la velocidad.
-
         private bool useEmulation = true;              // Indica si estamos corriendo la aplicacion en el emulador o en el dispositivo.
-
-        private TimeSpan timeInMinSpeed;               // Tiempo transcurrido a la velocidad minima requerida para cumplir el desafio.
-        private DispatcherTimer timer;                 // Timer que se ejecuta al alcanzar la velocidad minima requerida para contabilizar el tiempo transcurido en la misma.
-        private DateTime startedTime;                  // Se utiliza para marcar el tiempo exacto en el cual comenzo a correr a la velocidad minima requerida.
-        private bool isStartedTimer;                   // Se utiliza como marca de que el timer esta iniciado.
-
-
-        private TimeSpan transcurredTime;              // Tiempo transcurrido desde que se comenzo e ejecutar el desafio, utilizado para calcular la velocidad actual en el caso del emulador.
-        private DispatcherTimer timerToCalculateSpeed; // Timer que se ejecuta al comenzar el desafio para registrar el tiempo transcurrido.
-        private DateTime startedTimeAux;               // Se utiliza para marcar el tiempo exacto en que comenzo a jugarse el desafio.
-
         private UsainBolt desafio;                     // Instancia del desafio que se esta corriendo.
-
         private DateTime startToPlay;                  // Se utiliza para tener referencia temporal de en que ronda se comenzo a jugar el desafio.                  
         /******************************************************************************************************************/
 
-
-
+        private GPS_SpeedEmulator speedEmulator;
+        private int seconds = 30;
+        private DispatcherTimer temporizador;
+        private Boolean tempIniciado = false,
+                        completoTiempo = false;
 
         public Challenge1()
         {
@@ -60,214 +51,220 @@ namespace BeatIt_.Pages
             TransitionService.SetNavigationInTransition(this, navigateInTransition);
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
 
-
-            // OBTENEMOS LA INSTANCIA DEL DESAFIO.
-            /* hay que prolijear esto con una factory */
-            IChallengeController ich = ChallengeController.getInstance();
-            this.desafio = (UsainBolt)ich.getChallenge(AppCode.Enums.ChallengeType.CHALLENGE_TYPE.USAIN_BOLT);
-
-
             this.inicializar();
         }
 
 
         private void inicializar()
         {
-            /***************************************************************************************************************/
-            // INICIALIZAMOS LAS VARIABLES Y CARACTERISTICAS DEL DISPOSITIVO UTILIZADAS.
-            /***************************************************************************************************************/
-            this.startToPlay = System.DateTime.Now;
+            // OBTENEMOS LA INSTANCIA DEL DESAFIO.
+            /* hay que prolijear esto con una factory */
+            IChallengeController ich = ChallengeController.getInstance();
+            this.desafio = (UsainBolt)ich.getChallenge(AppCode.Enums.ChallengeType.CHALLENGE_TYPE.USAIN_BOLT);
 
-            // TIMER
-            this.timeInMinSpeed = new TimeSpan(0, 0, 0, 0, 0);
-            this.isStartedTimer = false;
-            // creating timer instance
-            this.timer = new DispatcherTimer();
-            // timer interval specified as 100 milisegundos
-            this.timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            // Sub-routine OnTimerTick will be called at every 1 second
-            this.timer.Tick += OnTimerTick;
-
-
-            // TIMER TO CALCULATE SPEED
-            if (this.useEmulation)
-            {
-                this.transcurredTime = new TimeSpan(0, 0, 0, 0, 0);
-                this.startedTimeAux = System.DateTime.Now;
-                // creating timer instance
-                this.timerToCalculateSpeed = new DispatcherTimer();
-                // timer interval specified as 100 milliseconds
-                this.timerToCalculateSpeed.Interval = new TimeSpan(0, 0, 0, 0, 100);
-                // Sub-routine OnTimerTick will be called at every 1 second
-                this.timerToCalculateSpeed.Tick += OnTimerToSpeedTick;
-                // Lo iniciamos ya que se inicia cuando inicia el desafio.
-                this.timerToCalculateSpeed.Start();
-            }
-
-
-            // INICIALIZAMOS EL GPS.
-            this.gps = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
-            //this.gps.MovementThreshold = 1f;
-            this.gps.PositionChanged += positionChanged;
-            this.gps.StatusChanged += stateChange;
-            this.gps.Start();
-
+            temporizador = new DispatcherTimer();
+            temporizador.Interval = new TimeSpan(0, 0, 1);
+            temporizador.Tick += tickTemp;
+            
 
             // INICIALIZAMOS LAS ETIQUETAS.
-            this.ShowTime.Text = (new TimeSpan(0, 0, 0, Convert.ToInt32(UsainBolt.TIEMPO_MINIMO_SEG), 0)).ToString("ss") + " s";
+            this.ShowTime.Text = UsainBolt.TIEMPO_MINIMO_SEG + " s";
             this.ShowSpeed.Text = "0.00 km/h";
-            this.ShowST.Text = this.desafio.getDTChallenge(this.startToPlay).getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
-            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido(this.startToPlay).ToString();
-        }
+            this.ShowST.Text = this.desafio.getDTChallenge().getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
+            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
+            this.ShowDuration.Text = this.desafio.getDTChallenge().getBestTime() + "s";
 
-        private void inicializarEtiquetas()
-        {
-        }
-
-
-        private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)
-        {
-
-        }
-
-
-        private void OnTimerTick(object sender, EventArgs e)
-        {
-            if (!this.isStartedTimer)
+            if (this.useEmulation)
             {
-                this.startedTime = System.DateTime.Now;
-                this.isStartedTimer = true;
+                speedEmulator = new GPS_SpeedEmulator();
+                speedEmulator.SpeedChange += methodSpeedChange;
+                speedEmulator.Start();
             }
             else
             {
-                // Actualizo la variable que mantiene el tiempo transcurrido a la velocidad mínima requerida.
-                this.timeInMinSpeed = System.DateTime.Now - startedTime;
-                this.ShowTime.Text = Math.Round(UsainBolt.TIEMPO_MINIMO_SEG - this.timeInMinSpeed.TotalSeconds, 2).ToString("#.00") + " s";
+                // INICIALIZAMOS EL GPS.
+                this.gps = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+                //this.gps.MovementThreshold = 1f;
+                this.gps.PositionChanged += positionChanged;
+                //this.gps.StatusChanged += stateChange;
+                this.gps.Start();
             }
+
+           
         }
 
-
-        private void OnTimerToSpeedTick(object sender, EventArgs e)
+        private void tickTemp(object o, EventArgs e)
         {
-            // Actualizo la variable que mantiene el tiempo global, que se utiliza para el calculo de la velocidad.
-            this.transcurredTime = System.DateTime.Now - this.startedTimeAux;
+            if (seconds > 0)
+            {
+                ShowTime.Text = seconds + "s";
+            }
+            else
+            {
+                completoTiempo = true;
+                ShowTime.Text = "0s +" + (Math.Abs(seconds) + 1 );
+            }
+            seconds--;
         }
 
 
         private void positionChanged(object obj, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            // Lo primero que debemos hacer es averiguar la velocidad actual, lo cual depende de si estamos en el emulador o en el dispositivo.
-            double velocidad; // Km/h.
-
-            if (this.useEmulation)
-                velocidad = this.simulateSpeed(this.transcurredTime);
-            else
-                velocidad = (e.Position.Location.Speed * 60 * 60) / 1000;
-
-            // Mostramos la velocidad en pantalla:
-            this.ShowSpeed.Text = Math.Round(velocidad, 2).ToString("#.00") + " km/h";
-
-            // DIVIDIMOS EN 5 CASOS: 1) (VELOCIDAD ACTUAL ES INFERIOR A LA MINIMA) && 
-            //                          (AHUN NO HABIA ALCANZADO LA VELOCIDAD MINIMA) --> EL DESAFIO CONTINUA.
-
-            //                       2) (VELOCIDAD ACTUAL ES INFERIOR A LA MINIMA) && 
-            //                          (HABIA ALCANZADO LA VELOCIDAD MINIMA) && 
-            //                          (TIEMPO TRANSCURRIDO EN VELOCIDAD MINIMA < TIEMPO_MINIMO_SEG s) --> DESAFIO TERMINA SIN COMPLETAR.
-
-            //                       3) (VELOCIDAD ACTUAL ES INFERIOR A LA MINIMA) && 
-            //                          (HABIA ALCANZADO LA VELOCIDAD MINIMA) && 
-            //                          (TIEMPO TRANSCURRIDO EN VELOCIDAD MINIMA > TIEMPO_MINIMO_SEG s) --> DESAFIO TERMINA CON EXITO!!!!!                                
-
-            //                       4) (VELOCIDAD ACTUAL ES SUPERIOR A LA MINIMA) && 
-            //                          (AHUN NO HABIA ALCANZADO LA VELOCIDAD MINIMA) --> COMIENZA A REGISTRARSE EL TIEMPO QUE MANTIENE LA VELOCIDAD MINIMA.
-
-            //                       5) (VELOCIDAD ACTUAL ES SUPERIOR A LA MINIMA) && 
-            //                          (HABIA ALCANZADO LA VELOCIDAD MINIMA) --> SE SIGUE REGISTRANDO EL TIEMPO (ESTA CORRIENDO A MAS DE LA VELOCIDAD MINIMA).
-
-            if (velocidad < UsainBolt.VELOCIDAD_MINIMA)
+            double speed = e.Position.Location.Speed * 3.6;
+            if (speed > 20)
             {
-                if (this.timeInMinSpeed.TotalMilliseconds == 0) // 1)
+                if (!tempIniciado)
                 {
-                    // No hacer nada.
-                }
-                else
-                {
-                    if (this.timeInMinSpeed.TotalSeconds < UsainBolt.TIEMPO_MINIMO_SEG) // 2)
-                    {
-                        // El desafio termina sin completar .............
-                        // VER QUE SE HACE ACA..... LANZAR MENSAJE, INICIALIZAR LOS COMPONENTES DE NUEVO PARA QUE PUEDA VOLVER A INTENTERLO....?
-                        this.timer.Stop();
-                        this.timerToCalculateSpeed.Stop();
-                        this.gps.Stop();
-
-                        // AUMENTEAR LOS INENTOS EN 1.
-
-                        MessageBox.Show("Desafio NO Completado.");
-                        // MOSTRAR MENSAJE DE DESAFIO SIN COMPLETAR!
-                        Thread.Sleep(2000); // Solo para mostrar los daros.
-                        
-                        // Volvemos a iniciar...
-                        this.inicializar();
-                    }
-                    else // 3)
-                    {
-                        // EL desafio se termina conexito!!!!!!!
-                        // VER QUE SE HACE ACA..... LANZAE MENSAJE, INICIALIZAR LOS COMPONENTES DE NUEVO PARA QUE PUEDA VOLVER A INTENTARLO....?
-                        this.timer.Stop();
-                        this.timerToCalculateSpeed.Stop();
-                        this.gps.Stop();
-                        this.ShowTime.Text = Math.Round(UsainBolt.TIEMPO_MINIMO_SEG - this.timeInMinSpeed.TotalSeconds, 2).ToString("#.00") + " s";
-
-                        this.desafio.finish(this.timeInMinSpeed, this.startToPlay);
-                        // MOSTRAR MENSAJE DE DESAFIO COMPLETADO CON EXITO!!!!!!
-                        MessageBox.Show("Desafío completado con exito!!! ha corrido " + this.timeInMinSpeed.TotalSeconds.ToString("#.00") + " s a la velocidad minima requerida.");
-                        Thread.Sleep(2000); // Solo para mostrar los daros.
-                        
-
-                        this.inicializar();
-                    }
+                    seconds = 30;
+                    temporizador.Start();
+                    tempIniciado = true;
                 }
             }
-            else
+            else if (completoTiempo && speed < 20)
             {
-                if (!this.isStartedTimer) // 4)
+                if (completoTiempo)
                 {
-                    this.timer.Start();
-                }
-                else // 5)
-                {
+                    tempIniciado = false;
+                    temporizador.Stop();
+                    if (useEmulation)
+                    {
+                        speedEmulator.Stop();
+                    }
+                    else
+                    {
+                        gps.Stop();
+                    }
+                    int tiempoCorrido = 30 + Math.Abs(seconds);
+                    MessageBox.Show("Desafío completado con exito!!! ha corrido " + tiempoCorrido + "segundos!");
+                    this.desafio.finish(tiempoCorrido);
                 }
             }
+            else if (speed < 20)
+            {
+                temporizador.Stop();
+                seconds = 30;
+            }
+            ShowSpeed.Text = String.Format("{0:0.##}", speed) + "Km/h";
+            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
         }
 
 
         private void stateChange(object obj, GeoPositionStatusChangedEventArgs e)
         {
-            //if(e.Status == GeoPositionStatus.Disabled)
-            //    VER QUE SE HACE SI NO ESTA DISPONIBLE EL GPS.
+
         }
 
-
-        public double simulateSpeed(TimeSpan time)
+        private void methodSpeedChange(double speed)
         {
-            if (time.TotalSeconds < 3)
-                return 0;
-            else if (time.TotalSeconds < 5)
-                return 5;
-            else if (time.TotalSeconds < 7)
-                return 10;
-            else if (time.TotalSeconds < 10)
-                return 15;
-            else if (time.TotalSeconds < 45)
-                return 21;
-            else if (time.TotalSeconds < 50)
-                return 15;
-            else if (time.TotalSeconds < 55)
-                return 10;
-            else if (time.TotalSeconds < 60)
-                return 5;
-            else
-                return 0;
+            if (speed > 20)
+            {
+                if (!tempIniciado)
+                {
+                    seconds = 30;
+                    temporizador.Start();
+                    tempIniciado = true;
+                }
+            }
+            else if (completoTiempo && speed < 20)
+            {
+                if (completoTiempo)
+                {
+                    tempIniciado = false;
+                    temporizador.Stop();
+                    if (useEmulation)
+                    {
+                        speedEmulator.Stop();
+                    }
+                    else
+                    {
+                        gps.Stop();
+                    }
+                    int tiempoCorrido = 30 + Math.Abs(seconds);
+                    MessageBox.Show("Desafío completado con exito!!! ha corrido " + tiempoCorrido + " segundos!");
+                    this.desafio.finish(tiempoCorrido);
+                }
+            }
+            else if (speed< 20)
+            {
+                temporizador.Stop();
+                seconds = 30;
+            }
+            ShowSpeed.Text = String.Format("{0:0.##}",speed) + "Km/h";
+            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
         }
+
+        private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+
+        }
+    }
+
+    class GPS_SpeedEmulator
+    {
+        private enum Estados { LLEGAR_A_20KM, MANTENER_TIEMPO , BAJAR_VELOCIDAD};
+        public delegate void EventSpeedChange(double s);
+
+        public event EventSpeedChange SpeedChange;
+
+        private DispatcherTimer timer;
+        private Random randomNumber;
+        private double speed = 0;
+        private Estados state = Estados.LLEGAR_A_20KM;
+        private int mantenerVelocidadPor = 40;
+
+        public GPS_SpeedEmulator()
+        {
+            randomNumber = new Random();
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1); 
+            timer.Tick += tickTimer;
+        }
+
+        public void Start()
+        {
+            timer.Start();
+        }
+
+        public void Stop(){
+            timer.Stop();
+        }
+
+        private void tickTimer(object o, EventArgs e)
+        {
+            int sumarRestar = randomNumber.Next(0, 2);
+            double dec = (1 + 0.0) / randomNumber.Next(1, 11),
+                    delta = randomNumber.Next(1, 4) + (sumarRestar - 1) * dec + sumarRestar*dec;
+
+            if (state == Estados.LLEGAR_A_20KM)
+            {
+                speed += randomNumber.Next(1, 4) + (sumarRestar - 1) * dec + sumarRestar*dec;
+                if (speed >= 20)
+                {
+                    state = Estados.MANTENER_TIEMPO;
+                }
+            }
+            else if (state == Estados.MANTENER_TIEMPO && mantenerVelocidadPor > 0)
+            {
+                mantenerVelocidadPor--;
+                double temp = speed + (sumarRestar - 1) * dec + sumarRestar * dec;
+                speed += temp >= 20 && temp < 24 ? temp -speed : 0;
+
+                if (mantenerVelocidadPor == 0)
+                {
+                    state = Estados.BAJAR_VELOCIDAD;
+                }
+            }
+            else if (state == Estados.BAJAR_VELOCIDAD)
+            {
+                speed -= randomNumber.Next(1, 4) - dec;
+                if (speed < 20)
+                {
+                    timer.Stop();
+                }
+            }
+            SpeedChange(speed);
+            
+        }
+
     }
 }

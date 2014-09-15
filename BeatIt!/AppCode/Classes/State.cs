@@ -18,6 +18,7 @@ namespace BeatIt_.AppCode.Classes
         private int puntaje;
         private DateTime fechaDeInicio;
         private int currentAttempt;
+        private int bestTime = 0;
 
         private Round round;
         private Challenge challenge;
@@ -31,7 +32,18 @@ namespace BeatIt_.AppCode.Classes
             this.currentAttempt = 0;
         }
 
+        public void setBestTime(int time)
+        {
+            if (this.bestTime < time)
+            {
+                this.bestTime = time;
+            }
+        }
 
+        public int getBestTime()
+        {
+            return bestTime;
+        }
 
 
         public bool getFinished()
@@ -51,7 +63,10 @@ namespace BeatIt_.AppCode.Classes
 
         public void setPuntaje(int puntaje)
         {
-            this.puntaje = puntaje;
+            if (this.puntaje < puntaje)
+            {
+                this.puntaje = puntaje;
+            }
         }
 
         public DateTime getFechaInicio()

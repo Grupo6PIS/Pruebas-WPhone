@@ -86,7 +86,7 @@ namespace BeatIt_.AppCode.Controllers
             {
                 foreach (KeyValuePair<ChallengeType.CHALLENGE_TYPE, Challenge> ch in this.chalengs)
                 {
-                    desafiosDeLaRonda.Add(ch.Value.getDTChallenge(fecha)); // para cada desafio que el controlador tenga, agregamos el DTChallenge 
+                    desafiosDeLaRonda.Add(ch.Value.getDTChallenge()); // para cada desafio que el controlador tenga, agregamos el DTChallenge 
                     // generado para el desafio en la ronda correspondiente a la fecha "fecha".
                 }
             }

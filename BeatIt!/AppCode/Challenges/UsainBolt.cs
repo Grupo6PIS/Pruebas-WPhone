@@ -33,12 +33,24 @@ namespace BeatIt_.AppCode.Challenges
 
             State state = new State();
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-            state.setPuntaje(settings.Contains("UsainBoltScore") ? Int32.Parse( settings["UsainBoltScore"] as string) : 0);
+            if (settings.Contains("UsainBoltScore"))
+            {
+                state.setPuntaje((int)settings["UsainBoltScore"]);
+            }
+            else
+            {
+                state.setPuntaje(0);
+            }
 
-            this.states.Add(new State());
+            if (settings.Contains("UsainBoltBestTime"))
+            {
+                state.setBestTime((int)settings["UsainBoltBestTime"]);
+            }
+
+            this.states.Add(state);
         }
 
-        public int getPuntajeObtenido(DateTime fecha)
+        public int getPuntajeObtenido()
         {
             // OJOOOOOO HARDCODEADO PARA EL PROTOTIPO, EL STATE HAY QUE OBTENERLO DE LA LISTA.
             List<State>.Enumerator e = this.states.GetEnumerator();
@@ -46,30 +58,38 @@ namespace BeatIt_.AppCode.Challenges
             return e.Current.getPuntaje();
         }
 
-        public void finish(TimeSpan timeSpan, DateTime fecha)
+        public void finish(int tiempo)
         {
             // OJOOOOOO HARDCODEADO PARA EL PROTOTIPO, EL STATE HAY QUE OBTENERLO DE LA LISTA.
             List<State>.Enumerator e = this.states.GetEnumerator();
             e.MoveNext();
 
-            e.Current.setPuntaje(this.calculatePuntaje(timeSpan));
+            e.Current.setPuntaje(this.calculatePuntaje(tiempo));
             e.Current.setFinished(true);
             e.Current.setCurrentAttempt(e.Current.getCurrentAttempt() + 1);
             
             // FALTARIA GUARDAR EL PUNTAJE.
+            
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
             if (!settings.Contains("UsainBoltScore"))
             {
                 settings.Add("UsainBoltScore", e.Current.getPuntaje());
             }
 
-            settings["UsainBoltScore"] = e.Current.getPuntaje();
+            if (!settings.Contains("UsainBoltBestTime"))
+            {
+                settings.Add("UsainBoltBestTime", tiempo);
+            }
 
+            settings["UsainBoltScore"] = e.Current.getPuntaje();
+            settings["UsainBoltBestTime"] = tiempo;
+
+            settings.Save();
         }
 
-        private int calculatePuntaje(TimeSpan timeSpan)
+        private int calculatePuntaje(int timeSpan)
         {
-            return 10 + Convert.ToInt32(timeSpan.TotalSeconds - UsainBolt.TIEMPO_MINIMO_SEG) * 2;
+            return 10 + Convert.ToInt32(timeSpan - UsainBolt.TIEMPO_MINIMO_SEG) * 2;
         }
     }
 }

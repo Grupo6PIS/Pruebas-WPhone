@@ -14,15 +14,16 @@ namespace BeatIt_.AppCode.Datatypes
 {
     public class DTChallenge
     {
-        private String challengeId { get; set; }
-        private String challengeName { get; set; }
-        private String challengeDescription { get; set; }
-        private int challengeDuration { get; set; }
-        private int challengeLevel { get; set; }
-        private bool finished { get; set; }
-        private int attempts { get; set; }
-        private int puntaje { get; set; }
-        private DateTime startTime { get; set; }
+        private String challengeId;
+        private String challengeName;
+        private String challengeDescription;
+        private int challengeDuration;
+        private int challengeLevel;
+        private bool finished;
+        private int attempts;
+        private int puntaje;
+        private DateTime startTime;
+        private int bestTime;
 
         public DTChallenge(String challengeId,
                            String challengeName,
@@ -32,8 +33,10 @@ namespace BeatIt_.AppCode.Datatypes
                            bool finished,
                            int attempts,
                            int puntaje,
-                           DateTime startTime)
+                           DateTime startTime,
+                           int bestTime)
         {
+            this.bestTime = bestTime;
             this.challengeId = challengeId;
             this.challengeName = challengeName;
             this.challengeDescription = challengeDescription;
@@ -45,6 +48,7 @@ namespace BeatIt_.AppCode.Datatypes
             this.startTime = startTime;
         }
 
+        public int getBestTime() { return bestTime; }
 
         public String getChallengeId() { return this.challengeId; }
 
