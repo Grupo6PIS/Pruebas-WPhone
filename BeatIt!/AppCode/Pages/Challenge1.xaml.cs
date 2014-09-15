@@ -25,7 +25,7 @@ namespace BeatIt_.Pages
 
         /******************************************************************************************************************/
         private GeoCoordinateWatcher gps;              // Instancia del GPS que se utilizara para el calculo de la velocidad.
-        private bool useEmulation = true;              // Indica si estamos corriendo la aplicacion en el emulador o en el dispositivo.
+        private bool useEmulation = false;              // Indica si estamos corriendo la aplicacion en el emulador o en el dispositivo.
         private UsainBolt desafio;                     // Instancia del desafio que se esta corriendo.
         private DateTime startToPlay;                  // Se utiliza para tener referencia temporal de en que ronda se comenzo a jugar el desafio.                  
         /******************************************************************************************************************/
@@ -115,6 +115,8 @@ namespace BeatIt_.Pages
         private void positionChanged(object obj, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             double speed = e.Position.Location.Speed * 3.6;
+            updateLabels(speed);
+
             if (speed > 20)
             {
                 if (!tempIniciado)
@@ -139,19 +141,19 @@ namespace BeatIt_.Pages
                         gps.Stop();
                     }
                     int tiempoCorrido = 30 + Math.Abs(seconds);
-                    MessageBox.Show("Desafío completado con exito!!! ha corrido " + tiempoCorrido + "segundos!");
+                    MessageBox.Show("Desafío completado con exito!!! ha corrido " + tiempoCorrido + " segundos!");
                     this.desafio.finish(tiempoCorrido);
+                    this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
+                    this.ShowDuration.Text = (this.desafio.getDTChallenge().getBestTime() > tiempoCorrido ? this.desafio.getDTChallenge().getBestTime() : tiempoCorrido) + "s";
                 }
             }
-            else if (speed < 20)
+            else if (tempIniciado && speed < 20)
             {
                 temporizador.Stop();
                 seconds = 30;
+                speedEmulator.Stop();
                 MessageBox.Show("Desafio no completado. ¿Listo para intentarlo otra vez?");
             }
-            ShowSpeed.Text = String.Format("{0:0.##}", speed) + "Km/h";
-            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
-            
         }
 
         private void stateChange(object obj, GeoPositionStatusChangedEventArgs e)
