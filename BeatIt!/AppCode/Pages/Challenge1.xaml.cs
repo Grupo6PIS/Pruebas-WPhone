@@ -25,7 +25,7 @@ namespace BeatIt_.Pages
 
         /******************************************************************************************************************/
         private GeoCoordinateWatcher gps;              // Instancia del GPS que se utilizara para el calculo de la velocidad.
-        private bool useEmulation = false;              // Indica si estamos corriendo la aplicacion en el emulador o en el dispositivo.
+        private bool useEmulation = false ;              // Indica si estamos corriendo la aplicacion en el emulador o en el dispositivo.
         private UsainBolt desafio;                     // Instancia del desafio que se esta corriendo.
         private DateTime startToPlay;                  // Se utiliza para tener referencia temporal de en que ronda se comenzo a jugar el desafio.                  
         /******************************************************************************************************************/
