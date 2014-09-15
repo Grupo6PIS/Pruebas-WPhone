@@ -61,6 +61,78 @@ namespace BeatIt_.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In this challenge you have to run faster than 20 km/h for 30 seconds..
+        /// </summary>
+        public static string Challenge1_DescriptionTxtBlockText {
+            get {
+                return ResourceManager.GetString("Challenge1_DescriptionTxtBlockText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Challenge1_DescriptionTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("Challenge1_DescriptionTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Challenge1_DetailsTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("Challenge1_DetailsTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration:.
+        /// </summary>
+        public static string Challenge1_DurationTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("Challenge1_DurationTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed (km/h).
+        /// </summary>
+        public static string Challenge1_SpeedTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("Challenge1_SpeedTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Time:.
+        /// </summary>
+        public static string Challenge1_StartTimeTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("Challenge1_StartTimeTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Left (s).
+        /// </summary>
+        public static string Challenge1_TimeLeftTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("Challenge1_TimeLeftTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Beat:.
+        /// </summary>
+        public static string Challenge1_ToBeatTxtBlockTitle {
+            get {
+                return ResourceManager.GetString("Challenge1_ToBeatTxtBlockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Challenges.
         /// </summary>
         public static string HomePage_ChallengesPivotTitle {
