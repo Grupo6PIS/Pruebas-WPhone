@@ -95,6 +95,12 @@ namespace BeatIt_.Pages
 
         private void tickTemp(object o, EventArgs e)
         {
+            seconds--;
+        }
+
+        private void updateLabels(double speed)
+        {
+            ShowSpeed.Text = String.Format("{0:0.##}", speed) + "Km/h";
             if (seconds > 0)
             {
                 ShowTime.Text = seconds + "s";
@@ -102,11 +108,9 @@ namespace BeatIt_.Pages
             else
             {
                 completoTiempo = true;
-                ShowTime.Text = "0s +" + (Math.Abs(seconds) + 1 );
+                ShowTime.Text = "0s +" + (Math.Abs(seconds) + 1);
             }
-            seconds--;
         }
-
 
         private void positionChanged(object obj, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
@@ -143,11 +147,12 @@ namespace BeatIt_.Pages
             {
                 temporizador.Stop();
                 seconds = 30;
+                MessageBox.Show("Desafio no completado. ¿Listo para intentarlo otra vez?");
             }
             ShowSpeed.Text = String.Format("{0:0.##}", speed) + "Km/h";
             this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
+            
         }
-
 
         private void stateChange(object obj, GeoPositionStatusChangedEventArgs e)
         {
@@ -156,6 +161,9 @@ namespace BeatIt_.Pages
 
         private void methodSpeedChange(double speed)
         {
+
+            updateLabels(speed);
+
             if (speed > 20)
             {
                 if (!tempIniciado)
@@ -182,15 +190,18 @@ namespace BeatIt_.Pages
                     int tiempoCorrido = 30 + Math.Abs(seconds);
                     MessageBox.Show("Desafío completado con exito!!! ha corrido " + tiempoCorrido + " segundos!");
                     this.desafio.finish(tiempoCorrido);
+                    this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
+                    this.ShowDuration.Text = (this.desafio.getDTChallenge().getBestTime() > tiempoCorrido ? this.desafio.getDTChallenge().getBestTime() : tiempoCorrido) + "s";
                 }
             }
-            else if (speed< 20)
+            else if (tempIniciado && speed < 20)
             {
                 temporizador.Stop();
                 seconds = 30;
+                speedEmulator.Stop();
+                MessageBox.Show("Desafio no completado. ¿Listo para intentarlo otra vez?");
             }
-            ShowSpeed.Text = String.Format("{0:0.##}",speed) + "Km/h";
-            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
+            
         }
 
         private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)
@@ -210,11 +221,12 @@ namespace BeatIt_.Pages
         private Random randomNumber;
         private double speed = 0;
         private Estados state = Estados.LLEGAR_A_20KM;
-        private int mantenerVelocidadPor = 40;
+        private int mantenerVelocidadPor;
 
         public GPS_SpeedEmulator()
         {
             randomNumber = new Random();
+            mantenerVelocidadPor = 25 + randomNumber.Next(1,11);
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1); 
             timer.Tick += tickTimer;
