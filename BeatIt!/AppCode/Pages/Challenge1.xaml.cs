@@ -31,7 +31,9 @@ namespace BeatIt_.Pages
         /******************************************************************************************************************/
 
         private GPS_SpeedEmulator speedEmulator;
-        private int seconds = 30;
+        private int seconds = 30,
+                velocidadMinima = 10,
+                tiempoMinimo = 30;
         private DispatcherTimer temporizador;
         private Boolean tempIniciado = false,
                         completoTiempo = false;
@@ -117,16 +119,16 @@ namespace BeatIt_.Pages
             double speed = e.Position.Location.Speed * 3.6;
             updateLabels(speed);
 
-            if (speed > 20)
+            if (speed > velocidadMinima)
             {
                 if (!tempIniciado)
                 {
-                    seconds = 30;
+                    seconds = tiempoMinimo;
                     temporizador.Start();
                     tempIniciado = true;
                 }
             }
-            else if (completoTiempo && speed < 20)
+            else if (completoTiempo && speed < velocidadMinima)
             {
                 if (completoTiempo)
                 {
@@ -140,17 +142,17 @@ namespace BeatIt_.Pages
                     {
                         gps.Stop();
                     }
-                    int tiempoCorrido = 30 + Math.Abs(seconds);
+                    int tiempoCorrido = tiempoMinimo + Math.Abs(seconds);
                     MessageBox.Show("Desafío completado con exito!!! ha corrido " + tiempoCorrido + " segundos!");
                     this.desafio.finish(tiempoCorrido);
                     this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
                     this.ShowDuration.Text = (this.desafio.getDTChallenge().getBestTime() > tiempoCorrido ? this.desafio.getDTChallenge().getBestTime() : tiempoCorrido) + "s";
                 }
             }
-            else if (tempIniciado && speed < 20)
+            else if (tempIniciado && speed < velocidadMinima)
             {
                 temporizador.Stop();
-                seconds = 30;
+                seconds = tiempoMinimo;
                 speedEmulator.Stop();
                 MessageBox.Show("Desafio no completado. ¿Listo para intentarlo otra vez?");
             }
@@ -166,16 +168,16 @@ namespace BeatIt_.Pages
 
             updateLabels(speed);
 
-            if (speed > 20)
+            if (speed > velocidadMinima)
             {
                 if (!tempIniciado)
                 {
-                    seconds = 30;
+                    seconds = tiempoMinimo;
                     temporizador.Start();
                     tempIniciado = true;
                 }
             }
-            else if (completoTiempo && speed < 20)
+            else if (completoTiempo && speed < velocidadMinima)
             {
                 if (completoTiempo)
                 {
@@ -189,17 +191,17 @@ namespace BeatIt_.Pages
                     {
                         gps.Stop();
                     }
-                    int tiempoCorrido = 30 + Math.Abs(seconds);
+                    int tiempoCorrido = tiempoMinimo + Math.Abs(seconds);
                     MessageBox.Show("Desafío completado con exito!!! ha corrido " + tiempoCorrido + " segundos!");
                     this.desafio.finish(tiempoCorrido);
                     this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
                     this.ShowDuration.Text = (this.desafio.getDTChallenge().getBestTime() > tiempoCorrido ? this.desafio.getDTChallenge().getBestTime() : tiempoCorrido) + "s";
                 }
             }
-            else if (tempIniciado && speed < 20)
+            else if (tempIniciado && speed < velocidadMinima)
             {
                 temporizador.Stop();
-                seconds = 30;
+                seconds = tiempoMinimo;
                 speedEmulator.Stop();
                 MessageBox.Show("Desafio no completado. ¿Listo para intentarlo otra vez?");
             }
@@ -223,7 +225,8 @@ namespace BeatIt_.Pages
         private Random randomNumber;
         private double speed = 0;
         private Estados state = Estados.LLEGAR_A_20KM;
-        private int mantenerVelocidadPor;
+        private int mantenerVelocidadPor,
+                    velocidadMinima = 20;
 
         public GPS_SpeedEmulator()
         {
@@ -252,7 +255,7 @@ namespace BeatIt_.Pages
             if (state == Estados.LLEGAR_A_20KM)
             {
                 speed += randomNumber.Next(1, 4) + (sumarRestar - 1) * dec + sumarRestar*dec;
-                if (speed >= 20)
+                if (speed >= velocidadMinima)
                 {
                     state = Estados.MANTENER_TIEMPO;
                 }
@@ -261,7 +264,7 @@ namespace BeatIt_.Pages
             {
                 mantenerVelocidadPor--;
                 double temp = speed + (sumarRestar - 1) * dec + sumarRestar * dec;
-                speed += temp >= 20 && temp < 24 ? temp -speed : 0;
+                speed += temp >= velocidadMinima && temp < 24 ? temp - speed : 0;
 
                 if (mantenerVelocidadPor == 0)
                 {
@@ -271,7 +274,7 @@ namespace BeatIt_.Pages
             else if (state == Estados.BAJAR_VELOCIDAD)
             {
                 speed -= randomNumber.Next(1, 4) - dec;
-                if (speed < 20)
+                if (speed < velocidadMinima)
                 {
                     timer.Stop();
                 }
