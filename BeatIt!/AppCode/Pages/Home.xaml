@@ -23,7 +23,7 @@
             <!--Pivot item one-->
             <controls:PivotItem Header="{Binding Path=AppResources.HomePage_ChallengesPivotTitle, Source={StaticResource LocalizedStrings}}">
                 <ScrollViewer x:Name="ChallengesGrid" Margin="12,0,12,0">
-                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1050" Margin="10,0,10,0">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1050" Margin="10,0,10,0" Name="home">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="210" />
                             <RowDefinition Height="210" />
@@ -74,12 +74,142 @@
 
             <!--Pivot item two-->
             <controls:PivotItem Header="{Binding Path=AppResources.HomePage_RankingPivotTitle, Source={StaticResource LocalizedStrings}}">
-                <Grid x:Name="RankingGrid" />
+                <ScrollViewer>
+                    <Grid  x:Name="RankingGrid" ShowGridLines="False" Background="Black">
+                        <!--DECLARACIONES-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="265" />
+                            <ColumnDefinition Width="70" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                           <!-- <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition /> -->
+                        </Grid.RowDefinitions>
+                        
+                        <!--SEPARADORES-->
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="0" Grid.Column="3" VerticalAlignment="Top"/>
+                        
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="1" Grid.Column="3" VerticalAlignment="Top"/>
+                        
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top"/>
+                        
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="3" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="3" Grid.Column="3" VerticalAlignment="Top"/>
+                        
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="4" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="4" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="4" Grid.Column="3" VerticalAlignment="Top"/>
+                        
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="5" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="5" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="5" Grid.Column="3" VerticalAlignment="Top"/>
+
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="6" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="6" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="6" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="6" Grid.Column="3" VerticalAlignment="Top"/>
+
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="7" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="7" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="7" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="7" Grid.Column="3" VerticalAlignment="Top"/>
+                       
+                        
+                        <!--DESTACAR PUNTAJE PROPIO-->
+
+                        <Rectangle Fill="#008a00"  Height="73" Width="10" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                     <!--   <Rectangle Fill="#008a00"  Height="73" Width="10" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            -->
+
+
+                        <!-- 
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="8" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="8" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="8" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="8" Grid.Column="3" VerticalAlignment="Top"/>
+                        
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="9" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="9" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="9" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="9" Grid.Column="3" VerticalAlignment="Top"/>
+                        
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="10" Grid.Column="0" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="10" Grid.Column="1" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="10" Grid.Column="2" VerticalAlignment="Top"/>
+                        <Rectangle Fill="#008a00"  Height="1" Grid.Row="10" Grid.Column="3" VerticalAlignment="Top"/>
+                        -->
+                        
+                        <!--IMAGENES ESTATICAS-->
+                        <Image Name="ph1"  Grid.Row="0" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Bart.png"/>
+                        <Image Name="ph2"  Grid.Row="1" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/profileImage.jpg"/>
+                        <Image Name="ph3"  Grid.Row="2" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Milhouse.png"/>
+                        <Image Name="ph4"  Grid.Row="3" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/lisa.png"/>
+                        <Image Name="ph5"  Grid.Row="4" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Homero.png"/>
+                        <Image Name="ph6"  Grid.Row="5" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Margge.png"/>
+                        <Image Name="ph7"  Grid.Row="6" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Magie.png"/>
+                        <Image Name="ph8"  Grid.Row="7" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/MrBrurns1.png"/>
+
+                        <!--TEXTO ESTATICO-->
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3" Text="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="0" Grid.Row="4" Text="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="0" Grid.Row="5" Text="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="0" Grid.Row="6" Text="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="0" Grid.Row="7" Text="8" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        
+                        <!--NOMBRES-->
+                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Bart Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1" Text="You" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="Milhouse Van Houten" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="3" Text="Lisa Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="4" Text="Homero Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="5" Text="Margge Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="6" Text="Maggie Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="7" Text="Montgomery Burns" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                    
+                        <!--PUNTAJE-->
+                        <TextBlock Grid.Column="3" Grid.Row="0" Text="128" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="3" Grid.Row="1" Text="123" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="3" Grid.Row="2" Text="117" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="3" Grid.Row="3" Text="115" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="3" Grid.Row="4" Text="81" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="3" Grid.Row="5" Text="79" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="3" Grid.Row="6" Text="35" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="3" Grid.Row="7" Text="17" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+
+                    </Grid>
+                </ScrollViewer>
             </controls:PivotItem>
 
             <!--Pivot item three-->
             <controls:PivotItem Header="{Binding Path=AppResources.HomePage_ProfilePivotTitle, Source={StaticResource LocalizedStrings}}">
-                <Grid x:Name="ProfileGrid">
+                <Grid x:Name="ProfileGrid" ShowGridLines="False">
                     <Button Content="{Binding Path=AppResources.HomePage_LogoutBtnTitle, Source={StaticResource LocalizedStrings}}" Height="60" HorizontalAlignment="Left" Margin="270,108,0,0" x:Name="logoutBtn" VerticalAlignment="Top" Width="160" Click="logoutBtn_Click" FontSize="16" Padding="0,0,0,3" />
                     <Image Height="140" HorizontalAlignment="Left" Margin="15,15,0,0" x:Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="140" Source="/BeatIt!;component/Images/profileImage.jpg" />
                     <TextBlock Height="50" HorizontalAlignment="Left" Margin="170,15,0,0" x:Name="nameTxtBlock" Text="Juan Perez" VerticalAlignment="Top" Width="260" FontSize="32" />
