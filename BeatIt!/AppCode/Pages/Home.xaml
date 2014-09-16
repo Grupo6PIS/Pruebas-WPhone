@@ -184,14 +184,14 @@
                         <TextBlock Grid.Column="0" Grid.Row="7" Text="8" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
                         
                         <!--NOMBRES-->
-                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Bart Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
-                        <TextBlock Grid.Column="2" Grid.Row="1" Text="You" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
-                        <TextBlock Grid.Column="2" Grid.Row="2" Text="Milhouse Van Houten" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
-                        <TextBlock Grid.Column="2" Grid.Row="3" Text="Lisa Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
-                        <TextBlock Grid.Column="2" Grid.Row="4" Text="Homero Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
-                        <TextBlock Grid.Column="2" Grid.Row="5" Text="Margge Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
-                        <TextBlock Grid.Column="2" Grid.Row="6" Text="Maggie Simpson" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
-                        <TextBlock Grid.Column="2" Grid.Row="7" Text="Montgomery Burns" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Bart Simpson" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1" Text="Juan Perez" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2" Text="Milhouse Van Houten" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="3" Text="Lisa Simpson" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="4" Text="Homero Simpson" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="5" Text="Margge Simpson" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="6" Text="Maggie Simpson" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
+                        <TextBlock Grid.Column="2" Grid.Row="7" Text="Montgomery Burns" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" FontFamily="Verdana" Margin="20,0,0,0"/>
                     
                         <!--PUNTAJE-->
                         <TextBlock Grid.Column="3" Grid.Row="0" Text="128" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>

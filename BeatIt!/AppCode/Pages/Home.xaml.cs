@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Windows.Media.Imaging;
 
 namespace BeatIt_.Pages
 {
@@ -28,6 +29,10 @@ namespace BeatIt_.Pages
             navigateOutTransition.Forward = new SlideTransition { Mode = SlideTransitionMode.SlideLeftFadeOut };
             TransitionService.SetNavigationInTransition(this, navigateInTransition);
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
+
+            Uri uri = new Uri("http://graph.facebook.com/100002316914037/picture?type=square", UriKind.Absolute);
+            ph2.Source = new BitmapImage(uri);
+
         }
 
         private void logoutBtn_Click(object sender, RoutedEventArgs e)

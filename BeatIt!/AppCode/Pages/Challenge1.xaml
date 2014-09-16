@@ -39,13 +39,14 @@
             <TextBlock FontWeight="Light" Foreground="White" HorizontalAlignment="Left" Margin="12,300,0,0" Name="textDescription" Text="{Binding Path=AppResources.Challenge1_DescriptionTxtBlockText, Source={StaticResource LocalizedStrings}}" Width="414" Height="100" VerticalAlignment="Top" TextWrapping="Wrap" />
 
 <!-- Estas se activan y desactivan de acuerdo si esta comenzado-->
-            <Grid Visibility="Collapsed" Name="StartRun">
-                <Rectangle Fill="#FF008A00" Height="80" Width="390" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50" IsHitTestVisible="True" />
-                <TextBlock FontWeight="ExtraBlack" Height="63" HorizontalAlignment="Left" Margin="102,459,0,0" Name="Start" Text="Start Running" VerticalAlignment="Top" Width="276" FontSize="40" />
+            <Grid Visibility="Visible" Name="StartRunningGrid">
+                <Rectangle Fill="#FF008A00" Height="80" Width="390" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50" IsHitTestVisible="True" Name="startRunningRec" />
+                <TextBlock FontWeight="ExtraBlack" Height="57" HorizontalAlignment="Left" Margin="33,460,0,0" Name="Start" Text="Start Running" VerticalAlignment="Top" Width="390" FontSize="40" TextAlignment="Center" />
+                <HyperlinkButton Content="" Height="80" HorizontalAlignment="Left" Margin="33,450,0,0" Name="StartRunningButton" VerticalAlignment="Top" Width="390" Click="hyperlinkButtonStartRunning_Click" />
             </Grid>
             
 <!-- Estas se activan y desactivan de acuerdo si esta comenzado-->
-            <Grid Visibility="Visible"  Name="InProgress">
+            <Grid Visibility="Collapsed"  Name="InProgressGrid">
                 <TextBlock FontSize="28" FontWeight="Normal" Height="52" HorizontalAlignment="Left" Margin="30,399,0,0" Name="titleTime" Text="{Binding Path=AppResources.Challenge1_TimeLeftTxtBlockTitle, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Width="182" TextAlignment="Center" />
                 <Rectangle Fill="#FF008A00" Height="80" Width="180" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="30,20,8,50" />
 

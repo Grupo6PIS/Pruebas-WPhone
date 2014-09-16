@@ -127,7 +127,7 @@
     <value>Detalle</value>
   </data>
   <data name="Challenge1_DurationTxtBlockTitle" xml:space="preserve">
-    <value>Duración:</value>
+    <value>Finaliza:</value>
   </data>
   <data name="Challenge1_SpeedTxtBlockTitle" xml:space="preserve">
     <value>Veloc. (km/h)</value>
