@@ -33,8 +33,8 @@ namespace BeatIt_.Pages
 
         private GPS_SpeedEmulator speedEmulator;
         private int seconds,
-                    minSpeed = 10,
-                    minTime = 10;
+                    minSpeed = 20,
+                    minTime = 30;
         private DispatcherTimer timer;
         private Boolean isRunning = false; //SE CAMBIA A TRUE CUANDO LA VELOCIDAD ACTUAL ES MAYOR O IGUAL A LA VELOCIDAD MINIMA DEL DESAFíO
 
@@ -92,7 +92,7 @@ namespace BeatIt_.Pages
                 startRunningRec.Opacity = 0.5;
 
                 this.gps = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
-                this.gps.MovementThreshold = 10;
+                this.gps.MovementThreshold = 3;
                 this.gps.PositionChanged += positionChanged;
                 this.gps.StatusChanged += statusChanged;
                 this.gps.Start();
@@ -186,6 +186,47 @@ namespace BeatIt_.Pages
             this.speedChanged(speed);
         }
 
+        private void speedChanged(double speed)
+        {
+            updateLabels(speed);
+
+            if (speed >= minSpeed)
+            {
+                isRunning = true;
+                SolidColorBrush mySolidColorBrush = new SolidColorBrush();
+                mySolidColorBrush.Color = Color.FromArgb(255, 229, 20, 0);
+                SpeedRec.Fill = mySolidColorBrush;     
+
+                if (!timer.IsEnabled) {
+                    timer.Start();
+                }
+            }
+            else
+            {
+                isRunning = false;
+                SolidColorBrush mySolidColorBrush = new SolidColorBrush();
+                mySolidColorBrush.Color = Color.FromArgb(255, 0, 138, 0);
+                SpeedRec.Fill = mySolidColorBrush;
+                if (timer.IsEnabled)
+                {
+                    //Desafío no completado
+                    timer.Stop();
+                    seconds = minTime;
+
+                    //CAMBIO DE GRILLA (InProgressGrid ==> StartRunningGrid)
+                    StartRunningGrid.Visibility = System.Windows.Visibility.Visible;
+                    InProgressGrid.Visibility = System.Windows.Visibility.Collapsed;
+
+                    if (useEmulation)
+                    {
+                        speedEmulator.Stop();
+                    }
+
+                    MessageBox.Show("Desafio no completado.");
+                }
+            }
+        }
+
         private void statusChanged(object obj, GeoPositionStatusChangedEventArgs e)
         {
             String statusType = "";
@@ -208,41 +249,6 @@ namespace BeatIt_.Pages
                 statusType = "Disabled";
             }
             //this.ShowDuration.Text = "Status: " + statusType;
-        }
-
-        private void speedChanged(double speed)
-        {
-
-            updateLabels(speed);
-
-            if (speed >= minSpeed)
-            {
-                isRunning = true;
-                if (!timer.IsEnabled) {
-                    timer.Start();
-                }
-            }
-            else
-            {
-                isRunning = false;
-                if (timer.IsEnabled)
-                {
-                    //Desafío no completado
-                    timer.Stop();
-                    seconds = minTime;
-
-                    //CAMBIO DE GRILLA (InProgressGrid ==> StartRunningGrid)
-                    StartRunningGrid.Visibility = System.Windows.Visibility.Visible;
-                    InProgressGrid.Visibility = System.Windows.Visibility.Collapsed;
-
-                    if (useEmulation)
-                    {
-                        speedEmulator.Stop();
-                    }
-
-                    MessageBox.Show("Desafio no completado.");
-                }
-            }
         }
 
         private void hyperlinkButtonStartRunning_Click(object sender, RoutedEventArgs e)
@@ -268,6 +274,17 @@ namespace BeatIt_.Pages
         private void image1_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
 
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            timer.Stop();
+            if (useEmulation)
+            {
+                speedEmulator.Stop();
+            }
+            e.Cancel = false;
+            base.OnBackKeyPress(e);
         }
     }
 

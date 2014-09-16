@@ -106,6 +106,15 @@ namespace BeatIt_.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Start running!.
+        /// </summary>
+        public static string Challenge1_StartButton {
+            get {
+                return ResourceManager.GetString("Challenge1_StartButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Start Time:.
         /// </summary>
         public static string Challenge1_StartTimeTxtBlockTitle {

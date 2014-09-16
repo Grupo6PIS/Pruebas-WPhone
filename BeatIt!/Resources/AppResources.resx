@@ -132,6 +132,9 @@
   <data name="Challenge1_SpeedTxtBlockTitle" xml:space="preserve">
     <value>Speed (km/h)</value>
   </data>
+  <data name="Challenge1_StartButton" xml:space="preserve">
+    <value>Start running!</value>
+  </data>
   <data name="Challenge1_StartTimeTxtBlockTitle" xml:space="preserve">
     <value>Start Time:</value>
   </data>

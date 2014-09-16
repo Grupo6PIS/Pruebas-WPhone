@@ -41,7 +41,7 @@
 <!-- Estas se activan y desactivan de acuerdo si esta comenzado-->
             <Grid Visibility="Visible" Name="StartRunningGrid">
                 <Rectangle Fill="#FF008A00" Height="80" Width="390" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,50" IsHitTestVisible="True" Name="startRunningRec" />
-                <TextBlock FontWeight="ExtraBlack" Height="57" HorizontalAlignment="Left" Margin="33,460,0,0" Name="Start" Text="Start Running" VerticalAlignment="Top" Width="390" FontSize="40" TextAlignment="Center" />
+                <TextBlock FontWeight="ExtraBlack" Height="57" HorizontalAlignment="Left" Margin="33,460,0,0" Name="Start" Text="{Binding Path=AppResources.Challenge1_StartButton, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Width="390" FontSize="40" TextAlignment="Center" />
                 <HyperlinkButton Content="" Height="80" HorizontalAlignment="Left" Margin="33,450,0,0" Name="StartRunningButton" VerticalAlignment="Top" Width="390" Click="hyperlinkButtonStartRunning_Click" />
             </Grid>
             
@@ -51,7 +51,7 @@
                 <Rectangle Fill="#FF008A00" Height="80" Width="180" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="30,20,8,50" />
 
                 <TextBlock FontSize="28" FontWeight="Normal" Height="52" HorizontalAlignment="Left" Margin="246,399,0,0" Name="textSpeed" Text="{Binding Path=AppResources.Challenge1_SpeedTxtBlockTitle, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Top" Width="180" TextAlignment="Center" />
-                <Rectangle Fill="#FF008A00" Height="80" Width="180" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8,20,30,50" />
+                <Rectangle Fill="#FF008A00" Height="80" Width="180" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8,20,30,50" Name="SpeedRec" />
                 <TextBlock FontSize="30" FontWeight="ExtraBold" Height="50" HorizontalAlignment="Left" Margin="30,465,0,0" Name="ShowTime" Text="---" VerticalAlignment="Top" Width="180" TextAlignment="Center" />
                 <TextBlock FontSize="30" FontWeight="ExtraBold" Height="50" HorizontalAlignment="Right" Margin="0,465,30,0" Name="ShowSpeed" Text="---" VerticalAlignment="Top" Width="180" TextAlignment="Center" />
             </Grid>
