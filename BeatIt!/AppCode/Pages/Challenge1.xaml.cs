@@ -74,7 +74,7 @@ namespace BeatIt_.Pages
 
             // INICIALIZAMOS LAS ETIQUETAS DEL DETALLE DEL DESAFIO
             this.ShowST.Text = this.desafio.getDTChallenge().getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
-            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido().ToString();
+            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + "pts";
             DateTime roundDate = new DateTime(2014, 9, 21, 22, 0, 0);
             this.ShowDuration.Text = getDurationString(roundDate);
 
@@ -96,7 +96,7 @@ namespace BeatIt_.Pages
                 this.gps.PositionChanged += positionChanged;
                 this.gps.StatusChanged += statusChanged;
                 this.gps.Start();
-                this.ShowToBeat.Text = "MThreshold: " + this.gps.MovementThreshold.ToString() + " m";
+                this.ShowToBeat.Text =this.desafio.getPuntajeObtenido() + "pts";
             }
         }
 
@@ -156,7 +156,9 @@ namespace BeatIt_.Pages
                     {
                         speedEmulator.Stop();
                     }
-
+                    seconds = minTime;
+                    this.desafio.finish(minTime);
+                    this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + "pts";
                     MessageBox.Show("Desafio completado!");
                 }
                 else
@@ -305,7 +307,7 @@ namespace BeatIt_.Pages
         public GPS_SpeedEmulator()
         {
             randomNumber = new Random();
-            mantenerVelocidadPor = 25 + randomNumber.Next(1,11);
+            mantenerVelocidadPor = 31;
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1); 
             timer.Tick += tickTimer;
@@ -318,6 +320,8 @@ namespace BeatIt_.Pages
 
         public void Stop(){
             timer.Stop();
+            speed = 0;
+            state = Estados.LLEGAR_A_20KM;
         }
 
         private void tickTimer(object o, EventArgs e)
@@ -353,7 +357,9 @@ namespace BeatIt_.Pages
                     speed -= randomNumber.Next(1, 4) - dec;
                     if (speed < velocidadMinima)
                     {
+                        speed = 0;
                         timer.Stop();
+                        state = Estados.LLEGAR_A_20KM;
                     }
                 }
                 SpeedChange(speed);
