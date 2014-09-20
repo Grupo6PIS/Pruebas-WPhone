@@ -20,8 +20,8 @@ namespace BeatIt_.AppCode.Classes
         private int currentAttempt;
         private int bestTime = 0;
 
-        private Round round;
-        private Challenge challenge;
+        //private Round round;
+        //private Challenge challenge;
 
 
         public State()

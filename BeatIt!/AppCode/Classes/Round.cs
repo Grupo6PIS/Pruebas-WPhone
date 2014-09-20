@@ -14,6 +14,6 @@ namespace BeatIt_.AppCode.Classes
 {
     public class Round
     {
-        private List<Round> rondas;
+        //private List<Round> rondas;
     }
 }

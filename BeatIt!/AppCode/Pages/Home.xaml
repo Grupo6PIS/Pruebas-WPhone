@@ -162,16 +162,6 @@
                         <Rectangle Fill="#008a00"  Height="1" Grid.Row="10" Grid.Column="2" VerticalAlignment="Top"/>
                         <Rectangle Fill="#008a00"  Height="1" Grid.Row="10" Grid.Column="3" VerticalAlignment="Top"/>
                         -->
-                        
-                        <!--IMAGENES ESTATICAS-->
-                        <Image Name="ph1"  Grid.Row="0" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Bart.png"/>
-                        <Image Name="ph2"  Grid.Row="1" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/profileImage.jpg"/>
-                        <Image Name="ph3"  Grid.Row="2" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Milhouse.png"/>
-                        <Image Name="ph4"  Grid.Row="3" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/lisa.png"/>
-                        <Image Name="ph5"  Grid.Row="4" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Homero.png"/>
-                        <Image Name="ph6"  Grid.Row="5" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Margge.png"/>
-                        <Image Name="ph7"  Grid.Row="6" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/Magie.png"/>
-                        <Image Name="ph8"  Grid.Row="7" Grid.Column="1" Margin="2" Source="/BeatIt!;component/Images/MrBrurns1.png"/>
 
                         <!--TEXTO ESTATICO-->
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Verdana"/>

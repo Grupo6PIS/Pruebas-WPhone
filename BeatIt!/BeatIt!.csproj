@@ -75,6 +75,12 @@
     <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
     <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
+    <Compile Include="AppCode\Pages\Challenge2.xaml.cs">
+      <DependentUpon>Challenge2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\Pages\Challenge3.xaml.cs">
+      <DependentUpon>Challenge3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,6 +112,14 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="AppCode\Pages\Challenge1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,13 +157,6 @@
     <Resource Include="Images\Mapa.png" />
     <Resource Include="Images\Musica.png" />
     <Resource Include="Images\camara.png" />
-    <Resource Include="Images\Bart.png" />
-    <Resource Include="Images\Homero.png" />
-    <Resource Include="Images\Lisa.png" />
-    <Resource Include="Images\Magie.png" />
-    <Resource Include="Images\Margge.png" />
-    <Resource Include="Images\Milhouse.png" />
-    <Resource Include="Images\MrBrurns1.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />

@@ -157,7 +157,7 @@
     <value>Ranking</value>
   </data>
   <data name="HomePage_SettingsTxtBlockTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>SETTINGS</value>
   </data>
   <data name="LoginPage_LoginBtnTitle" xml:space="preserve">
     <value>Login with Facebook</value>

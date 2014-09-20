@@ -27,8 +27,7 @@ namespace BeatIt_.Pages
         /******************************************************************************************************************/
         private GeoCoordinateWatcher gps;              // Instancia del GPS que se utilizara para el calculo de la velocidad.
         private bool useEmulation = (Microsoft.Devices.Environment.DeviceType == DeviceType.Emulator);              // Indica si estamos corriendo la aplicacion en el emulador o en el dispositivo.
-        private UsainBolt desafio;                     // Instancia del desafio que se esta corriendo.
-        private DateTime startToPlay;                  // Se utiliza para tener referencia temporal de en que ronda se comenzo a jugar el desafio.                  
+        private UsainBolt desafio;                     // Instancia del desafio que se esta corriendo.                
         /******************************************************************************************************************/
 
         private GPS_SpeedEmulator speedEmulator;
@@ -231,25 +230,25 @@ namespace BeatIt_.Pages
 
         private void statusChanged(object obj, GeoPositionStatusChangedEventArgs e)
         {
-            String statusType = "";
-            if (e.Status == GeoPositionStatus.NoData)
-            {
-                statusType = "NoData";
-            }
-            if (e.Status == GeoPositionStatus.Initializing)
-            {
-                statusType = "Initializing";
-            }
-            if (e.Status == GeoPositionStatus.Ready)
-            {
-                statusType = "Ready";
-                StartRunningButton.IsEnabled = true;
-                startRunningRec.Opacity = 1.0;
-            }
-            if (e.Status == GeoPositionStatus.Disabled)
-            {
-                statusType = "Disabled";
-            }
+            //String statusType = "";
+            //if (e.Status == GeoPositionStatus.NoData)
+            //{
+            //    statusType = "NoData";
+            //}
+            //if (e.Status == GeoPositionStatus.Initializing)
+            //{
+            //    statusType = "Initializing";
+            //}
+            //if (e.Status == GeoPositionStatus.Ready)
+            //{
+            //    statusType = "Ready";
+            //    StartRunningButton.IsEnabled = true;
+            //    startRunningRec.Opacity = 1.0;
+            //}
+            //if (e.Status == GeoPositionStatus.Disabled)
+            //{
+            //    statusType = "Disabled";
+            //}
             //this.ShowDuration.Text = "Status: " + statusType;
         }
 
