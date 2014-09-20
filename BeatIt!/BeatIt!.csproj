@@ -72,6 +72,9 @@
     <Compile Include="AppCode\Classes\State.cs" />
     <Compile Include="AppCode\Classes\User.cs" />
     <Compile Include="AppCode\Controllers\ChallengeController.cs" />
+    <Compile Include="AppCode\CustomControls\RankingListItem.xaml.cs">
+      <DependentUpon>RankingListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
     <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
@@ -111,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="AppCode\CustomControls\RankingListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppCode\Pages\Challenge1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
