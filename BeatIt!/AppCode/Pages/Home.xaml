@@ -22,7 +22,16 @@
         <controls:Pivot Title="BeatIt!" Margin="10,10,10,10">
             <!--Pivot item one-->
             <controls:PivotItem Header="{Binding Path=AppResources.HomePage_ChallengesPivotTitle, Source={StaticResource LocalizedStrings}}">
-                <ScrollViewer x:Name="ChallengesGrid" Margin="12,0,12,0">
+                <Grid x:Name="ChallengesGrid">
+                    <ListBox Margin="0,0,0,0" Name="ChallengesListBox">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <toolkit:WrapPanel Orientation="Horizontal" FlowDirection="LeftToRight"  ItemWidth="210" ItemHeight="210"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </Grid>
+                <!--<ScrollViewer x:Name="ChallengesScrollViewer" Margin="12,0,12,0">
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="1050" Margin="10,0,10,0" Name="home">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="210" />
@@ -69,7 +78,7 @@
                         <Image Name="Ch10Image"  Grid.Row="4" Grid.Column="1" Margin="2,2,8,2" Source="/BeatIt!;component/Images/camara.png" OpacityMask="#19000000" />
                         
                     </Grid>
-                </ScrollViewer>
+                </ScrollViewer>-->
             </controls:PivotItem>
 
             <!--Pivot item two-->

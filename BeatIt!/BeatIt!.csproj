@@ -72,6 +72,9 @@
     <Compile Include="AppCode\Classes\State.cs" />
     <Compile Include="AppCode\Classes\User.cs" />
     <Compile Include="AppCode\Controllers\ChallengeController.cs" />
+    <Compile Include="AppCode\CustomControls\ChallenesListItem.xaml.cs">
+      <DependentUpon>ChallenesListItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppCode\CustomControls\RankingListItem.xaml.cs">
       <DependentUpon>RankingListItem.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="AppCode\CustomControls\ChallenesListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppCode\CustomControls\RankingListItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

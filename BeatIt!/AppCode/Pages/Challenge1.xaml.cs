@@ -74,8 +74,8 @@ namespace BeatIt_.Pages
 
             // INICIALIZAMOS LAS ETIQUETAS DEL DETALLE DEL DESAFIO
             this.ShowST.Text = this.desafio.getDTChallenge().getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
-            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + "pts";
-            DateTime roundDate = new DateTime(2014, 9, 21, 22, 0, 0);
+            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + " pts";
+            DateTime roundDate = new DateTime(2014, 9, 28, 22, 0, 0);
             this.ShowDuration.Text = getDurationString(roundDate);
 
             this.ShowTime.Text =  minTime.ToString();
@@ -96,7 +96,7 @@ namespace BeatIt_.Pages
                 this.gps.PositionChanged += positionChanged;
                 this.gps.StatusChanged += statusChanged;
                 this.gps.Start();
-                this.ShowToBeat.Text =this.desafio.getPuntajeObtenido() + "pts";
+                this.ShowToBeat.Text =this.desafio.getPuntajeObtenido() + " pts";
             }
         }
 
@@ -158,7 +158,7 @@ namespace BeatIt_.Pages
                     }
                     seconds = minTime;
                     this.desafio.finish(minTime);
-                    this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + "pts";
+                    this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + " pts";
                     MessageBox.Show("Desafio completado!");
                 }
                 else
@@ -232,24 +232,24 @@ namespace BeatIt_.Pages
         private void statusChanged(object obj, GeoPositionStatusChangedEventArgs e)
         {
             //String statusType = "";
-            //if (e.Status == GeoPositionStatus.NoData)
-            //{
-            //    statusType = "NoData";
-            //}
-            //if (e.Status == GeoPositionStatus.Initializing)
-            //{
-            //    statusType = "Initializing";
-            //}
-            //if (e.Status == GeoPositionStatus.Ready)
-            //{
-            //    statusType = "Ready";
-            //    StartRunningButton.IsEnabled = true;
-            //    startRunningRec.Opacity = 1.0;
-            //}
-            //if (e.Status == GeoPositionStatus.Disabled)
-            //{
-            //    statusType = "Disabled";
-            //}
+            if (e.Status == GeoPositionStatus.NoData)
+            {
+                //statusType = "NoData";
+            }
+            if (e.Status == GeoPositionStatus.Initializing)
+            {
+                //statusType = "Initializing";
+            }
+            if (e.Status == GeoPositionStatus.Ready)
+            {
+                //statusType = "Ready";
+                StartRunningButton.IsEnabled = true;
+                startRunningRec.Opacity = 1.0;
+            }
+            if (e.Status == GeoPositionStatus.Disabled)
+            {
+                //statusType = "Disabled";
+            }
             //this.ShowDuration.Text = "Status: " + statusType;
         }
 

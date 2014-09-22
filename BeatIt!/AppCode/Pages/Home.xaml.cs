@@ -33,6 +33,65 @@ namespace BeatIt_.Pages
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
 
             this.initRankingListBox();
+            this.initChallengesListBox();
+        }
+
+        public static SolidColorBrush GetColorFromHexa(string hexaColor)
+        {
+            return new SolidColorBrush(
+                Color.FromArgb(
+                    Convert.ToByte(hexaColor.Substring(1, 2), 16),
+                    Convert.ToByte(hexaColor.Substring(3, 2), 16),
+                    Convert.ToByte(hexaColor.Substring(5, 2), 16),
+                    Convert.ToByte(hexaColor.Substring(7, 2), 16)
+                )
+            );
+        }
+
+        private void initChallengesListBox()
+        {
+
+            string[] colors = new string[10];
+            colors[0] = "#FF008A00";
+            colors[1] = "#FF1CA1E3";
+            colors[2] = "#FFFA6800";
+            colors[3] = "#FFE3C900";
+            colors[4] = "#FFAA00FF";
+            colors[5] = "#FFE61300";
+            colors[6] = "#FFFA6800";
+            colors[7] = "#FF008A02";
+            colors[8] = "#FF1CA1E3";
+            colors[9] = "#FFE3C900";
+
+            string[] images = new string[10];
+            images[0] = "/BeatIt!;component/Images/Correr.png";
+            images[1] = "/BeatIt!;component/Images/Jugar.png";
+            images[2] = "/BeatIt!;component/Images/Musica.png";
+            images[3] = "/BeatIt!;component/Images/camara.png";
+            images[4] = "/BeatIt!;component/Images/Mapa.png";
+            images[5] = "/BeatIt!;component/Images/Gps.png";
+            images[6] = "/BeatIt!;component/Images/Musica.png";
+            images[7] = "/BeatIt!;component/Images/Correr.png";
+            images[8] = "/BeatIt!;component/Images/Jugar.png";
+            images[9] = "/BeatIt!;component/Images/camara.png";
+
+            for (int i = 0; i < 10; i++) 
+            {
+                ChallenesListItem listItem = new ChallenesListItem();
+                listItem.backgroundRec.Fill = GetColorFromHexa(colors[i]);
+                Uri uri = new Uri(images[i], UriKind.Relative);
+                listItem.image.Source = new BitmapImage(uri);
+                listItem.linkBtn.Click += linkBtn_Click;
+                listItem.linkBtn.Tag = i + 1;
+                ChallengesListBox.Items.Add(listItem);   
+            }
+        }
+
+        private void linkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HyperlinkButton linkBtn = sender as HyperlinkButton;
+            String pagePath = "/BeatIt!;component/AppCode/Pages/Challenge" + linkBtn.Tag + ".xaml";
+            NavigationService.Navigate(new Uri(pagePath, UriKind.Relative));
         }
 
         private void initRankingListBox()
