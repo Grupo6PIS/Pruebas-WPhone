@@ -78,11 +78,32 @@
     <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
     <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
+    <Compile Include="AppCode\Pages\Challenge10.xaml.cs">
+      <DependentUpon>Challenge10.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppCode\Pages\Challenge2.xaml.cs">
       <DependentUpon>Challenge2.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppCode\Pages\Challenge3.xaml.cs">
       <DependentUpon>Challenge3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\Pages\Challenge4.xaml.cs">
+      <DependentUpon>Challenge4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\Pages\Challenge5.xaml.cs">
+      <DependentUpon>Challenge5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\Pages\Challenge6.xaml.cs">
+      <DependentUpon>Challenge6.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\Pages\Challenge7.xaml.cs">
+      <DependentUpon>Challenge7.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\Pages\Challenge8.xaml.cs">
+      <DependentUpon>Challenge8.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppCode\Pages\Challenge9.xaml.cs">
+      <DependentUpon>Challenge9.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -122,11 +143,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AppCode\Pages\Challenge10.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AppCode\Pages\Challenge2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppCode\Pages\Challenge3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge6.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge7.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge8.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppCode\Pages\Challenge9.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,13 +11,11 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
-/* INVITA A TUS AMIGOS */
-
 namespace BeatIt_.AppCode.Pages
 {
-    public partial class Challenge3 : PhoneApplicationPage
+    public partial class Challenge9 : PhoneApplicationPage
     {
-        public Challenge3()
+        public Challenge9()
         {
             InitializeComponent();
 
