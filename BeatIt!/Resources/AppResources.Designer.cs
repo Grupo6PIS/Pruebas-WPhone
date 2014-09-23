@@ -142,6 +142,24 @@ namespace BeatIt_.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In this challenge you have to .....
+        /// </summary>
+        public static string Challenge4_DescriptionTxtBlockText {
+            get {
+                return ResourceManager.GetString("Challenge4_DescriptionTxtBlockText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Play Sound.
+        /// </summary>
+        public static string Challenge4_PlaySoundButton {
+            get {
+                return ResourceManager.GetString("Challenge4_PlaySoundButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Challenges.
         /// </summary>
         public static string HomePage_ChallengesPivotTitle {

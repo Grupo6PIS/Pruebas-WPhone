@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Phone.Reactive" />
+    <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -220,6 +221,7 @@
     <Resource Include="Images\Mapa.png" />
     <Resource Include="Images\Musica.png" />
     <Resource Include="Images\camara.png" />
+    <Resource Include="Sounds\dog_bark.wav" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />

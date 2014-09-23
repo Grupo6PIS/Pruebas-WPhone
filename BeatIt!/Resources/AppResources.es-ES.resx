@@ -144,6 +144,12 @@
   <data name="Challenge1_ToBeatTxtBlockTitle" xml:space="preserve">
     <value>A vencer:</value>
   </data>
+  <data name="Challenge4_DescriptionTxtBlockText" xml:space="preserve">
+    <value>En este desafío debes...</value>
+  </data>
+  <data name="Challenge4_PlaySoundButton" xml:space="preserve">
+    <value>Reproducir sonido</value>
+  </data>
   <data name="HomePage_ChallengesPivotTitle" xml:space="preserve">
     <value>Desafíos</value>
   </data>
