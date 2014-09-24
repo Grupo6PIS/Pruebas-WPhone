@@ -15,20 +15,17 @@ namespace BeatIt_.AppCode.Classes
     public class State
     {
         private bool finished;
-        private int puntaje;
-        private DateTime fechaDeInicio;
+        private int score;
+        private DateTime startDate;
         private int currentAttempt;
         private int bestTime = 0;
-
-        //private Round round;
-        //private Challenge challenge;
-
+        private Challenge challenge;
 
         public State()
         {
             this.finished = false;
-            this.puntaje = 0;
-            this.fechaDeInicio = System.DateTime.Now;
+            this.score = 0;
+            this.startDate = System.DateTime.Now;
             this.currentAttempt = 0;
         }
 
@@ -56,27 +53,27 @@ namespace BeatIt_.AppCode.Classes
             this.finished = finished;
         }
 
-        public int getPuntaje()
+        public int getScore()
         {
-            return this.puntaje;
+            return this.score;
         }
 
-        public void setPuntaje(int puntaje)
+        public void setScore(int score)
         {
-            if (this.puntaje < puntaje)
+            if (this.score < score)
             {
-                this.puntaje = puntaje;
+                this.score = score;
             }
         }
 
-        public DateTime getFechaInicio()
+        public DateTime getStartDate()
         {
-            return this.fechaDeInicio;
+            return this.startDate;
         }
 
-        public void setFechaInicio(DateTime fechaInicio)
+        public void setStartDate(DateTime startDate)
         {
-            this.fechaDeInicio = fechaInicio;
+            this.startDate = startDate;
         }
 
         public int getCurrentAttempt()
@@ -87,6 +84,16 @@ namespace BeatIt_.AppCode.Classes
         public void setCurrentAttempt(int attempt)
         {
             this.currentAttempt = attempt;
+        }
+
+        public Challenge getChallenge()
+        {
+            return this.challenge;
+        }
+
+        public void setChallenge(Challenge challenge)
+        {
+            this.challenge = challenge;
         }
     }
 }

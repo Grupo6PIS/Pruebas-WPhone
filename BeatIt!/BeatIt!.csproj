@@ -73,15 +73,18 @@
     <Compile Include="AppCode\Classes\State.cs" />
     <Compile Include="AppCode\Classes\User.cs" />
     <Compile Include="AppCode\Controllers\ChallengeController.cs" />
+    <Compile Include="AppCode\Controllers\FacadeController.cs" />
     <Compile Include="AppCode\CustomControls\ChallenesListItem.xaml.cs">
       <DependentUpon>ChallenesListItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppCode\CustomControls\RankingListItem.xaml.cs">
       <DependentUpon>RankingListItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppCode\Datatypes\DTRanking.cs" />
     <Compile Include="AppCode\Enums\ChallengeType.cs" />
     <Compile Include="AppCode\Datatypes\DTChallenge.cs" />
     <Compile Include="AppCode\Interfaces\IChallengeController.cs" />
+    <Compile Include="AppCode\Interfaces\IFacadeController.cs" />
     <Compile Include="AppCode\Pages\Challenge10.xaml.cs">
       <DependentUpon>Challenge10.xaml</DependentUpon>
     </Compile>

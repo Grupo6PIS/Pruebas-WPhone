@@ -14,10 +14,10 @@ namespace BeatIt_.AppCode.Datatypes
 {
     public class DTChallenge
     {
-        private String challengeId;
+        private int challengeId;
         private String challengeName;
         private String challengeDescription;
-        private int challengeDuration;
+        private bool isEnabled;
         private int challengeLevel;
         private bool finished;
         private int attempts;
@@ -25,10 +25,10 @@ namespace BeatIt_.AppCode.Datatypes
         private DateTime startTime;
         private int bestTime;
 
-        public DTChallenge(String challengeId,
+        public DTChallenge(int challengeId,
                            String challengeName,
                            String challengeDescription,
-                           int challengeDuration,
+                           bool isEnabled,
                            int challengeLevel,
                            bool finished,
                            int attempts,
@@ -40,7 +40,7 @@ namespace BeatIt_.AppCode.Datatypes
             this.challengeId = challengeId;
             this.challengeName = challengeName;
             this.challengeDescription = challengeDescription;
-            this.challengeDuration = challengeDuration;
+            this.isEnabled = isEnabled;
             this.challengeLevel = challengeLevel;
             this.finished = finished;
             this.attempts = attempts;
@@ -50,13 +50,13 @@ namespace BeatIt_.AppCode.Datatypes
 
         public int getBestTime() { return bestTime; }
 
-        public String getChallengeId() { return this.challengeId; }
+        public int getChallengeId() { return this.challengeId; }
 
         public String getChallengeName() { return this.challengeName; }
 
         public String getChallengeDescription() { return this.challengeDescription; }
 
-        public int getChallengeDuration() { return this.challengeDuration; }
+        public bool getIsEnabled() { return this.isEnabled; }
 
         public int getChallengeLevel() { return this.challengeLevel; }
 

@@ -15,66 +15,79 @@ namespace BeatIt_.AppCode.Classes
 {
     public class Challenge
     {
-        protected string id;
-        protected string name;
-        protected string descripcion;
-        protected int duration; // Duracion en enteros? que significa?
-        protected int level;
-        protected int maxAttempt;
-
-        protected List<State> states;
+        private int challengeId;
+        private string name;
+        private string description;
+        private bool isEnabled;
+        private int level;
+        private int maxAttempt;
+        private Round round;
+        private State state;
 
         public Challenge()
         {
         }
 
-        public string getId()
+        public int ChallengeId
         {
-            return this.id;
+            get { return challengeId; }
+            set { challengeId = value; }
         }
 
-        public string getName()
+        public string Name
         {
-            return this.name;
+            get { return name; }
+            set { name = value; }
         }
 
-        public string getDescripcion()
+        public string Description
         {
-            return this.descripcion;
+            get { return description; }
+            set { description = value; }
         }
 
-        public int getDuration()
+        public bool IsEnabled
         {
-            return this.duration;
+            get { return isEnabled; }
+            set { isEnabled = value; }
         }
 
-        public int getLevel()
+        public int Level
         {
-            return this.level;
+            get { return level; }
+            set { level = value; }
         }
 
-        public int getMaxAttempt()
+        public int MaxAttempt
         {
-            return this.maxAttempt;
+            get { return maxAttempt; }
+            set { maxAttempt = value; }
+        }
+
+        public Round Round
+        {
+            get { return round; }
+            set { round = value; }
+        }
+
+        public State State
+        {
+            get { return state; }
+            set { state = value; }
         }
 
         public DTChallenge getDTChallenge()
         {
-            List<State>.Enumerator e = this.states.GetEnumerator();
-            e.MoveNext();
-
-            State estadoActual = e.Current; // ojo, esto es en el prototipo, hay que buscar el estado en la lista por la fecha.
-
-            return new DTChallenge(this.id,
+            return new DTChallenge(this.challengeId,
                                    this.name,
-                                   this.descripcion,
-                                   this.duration,
+                                   this.description,
+                                   this.isEnabled,
                                    this.level,
-                                   estadoActual.getFinished(),
-                                   estadoActual.getCurrentAttempt(),
-                                   estadoActual.getPuntaje(),
-                                   estadoActual.getFechaInicio(),
-                                   estadoActual.getBestTime());
+                                   this.state.getFinished(),
+                                   this.state.getCurrentAttempt(),
+                                   this.state.getScore(),
+                                   this.state.getStartDate(),
+                                   this.state.getBestTime());
         }
     }
 }

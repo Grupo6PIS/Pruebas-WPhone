@@ -18,28 +18,27 @@ namespace BeatIt_.AppCode.Challenges
 {
     public class UsainBolt : Challenge
     {
-        public const double VELOCIDAD_MINIMA = 20;
+        public const double VELOCIDAD_MINIMA = 10;
         public const double TIEMPO_MINIMO_SEG = 30;
 
         public UsainBolt()
         {
-            this.id = Enums.ChallengeType.ToString(Enums.ChallengeType.CHALLENGE_TYPE.USAIN_BOLT);
-            this.name = "Usain Bolt";
-            this.descripcion = "Se deberrá correr una velocidad minima de " + VELOCIDAD_MINIMA + "Km/h durante " + TIEMPO_MINIMO_SEG.ToString() + " s.";
-            this.duration = 0;
-            this.level = 0;
-            this.maxAttempt = 0;
-            this.states = new List<State>();
+            this.ChallengeId = 1;
+            this.Name = "Usain Bolt";
+            this.Description = "Se deberrá correr una velocidad minima de " + VELOCIDAD_MINIMA + "Km/h durante " + TIEMPO_MINIMO_SEG.ToString() + " s.";
+            this.IsEnabled = true;
+            this.Level = 0;
+            this.MaxAttempt = 0;
 
             State state = new State();
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
             if (settings.Contains("UsainBoltScore"))
             {
-                state.setPuntaje((int)settings["UsainBoltScore"]);
+                state.setScore((int)settings["UsainBoltScore"]);
             }
             else
             {
-                state.setPuntaje(0);
+                state.setScore(0);
             }
 
             if (settings.Contains("UsainBoltBestTime"))
@@ -47,34 +46,26 @@ namespace BeatIt_.AppCode.Challenges
                 state.setBestTime((int)settings["UsainBoltBestTime"]);
             }
 
-            this.states.Add(state);
+            this.State = state;
         }
 
         public int getPuntajeObtenido()
         {
-            // OJOOOOOO HARDCODEADO PARA EL PROTOTIPO, EL STATE HAY QUE OBTENERLO DE LA LISTA.
-            List<State>.Enumerator e = this.states.GetEnumerator();
-            e.MoveNext();
-            return e.Current.getPuntaje();
-
+            return this.State.getScore();
         }
 
         public void finish(int tiempo)
         {
-            // OJOOOOOO HARDCODEADO PARA EL PROTOTIPO, EL STATE HAY QUE OBTENERLO DE LA LISTA.
-            List<State>.Enumerator e = this.states.GetEnumerator();
-            e.MoveNext();
-
-            e.Current.setPuntaje(this.calculatePuntaje(tiempo));
-            e.Current.setFinished(true);
-            e.Current.setCurrentAttempt(e.Current.getCurrentAttempt() + 1);
+            this.State.setScore(this.calculatePuntaje(tiempo));
+            this.State.setFinished(true);
+            this.State.setCurrentAttempt(this.State.getCurrentAttempt() + 1);
             
             // FALTARIA GUARDAR EL PUNTAJE.
             
             IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
             if (!settings.Contains("UsainBoltScore"))
             {
-                settings.Add("UsainBoltScore", e.Current.getPuntaje());
+                settings.Add("UsainBoltScore", this.State.getScore());
             }
 
             if (!settings.Contains("UsainBoltBestTime"))
@@ -82,7 +73,7 @@ namespace BeatIt_.AppCode.Challenges
                 settings.Add("UsainBoltBestTime", tiempo);
             }
 
-            settings["UsainBoltScore"] = e.Current.getPuntaje();
+            settings["UsainBoltScore"] = this.State.getScore();
             settings["UsainBoltBestTime"] = tiempo;
 
             settings.Save();

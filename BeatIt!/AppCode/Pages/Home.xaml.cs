@@ -13,11 +13,17 @@ using Microsoft.Phone.Controls;
 using System.Windows.Media.Imaging;
 using BeatIt_.AppCode.CustomControls;
 using BeatIt_.AppCode.Classes;
+using BeatIt_.AppCode.Interfaces;
+using BeatIt_.AppCode.Controllers;
+using BeatIt_.AppCode.Datatypes;
 
 namespace BeatIt_.Pages
 {
     public partial class Home : PhoneApplicationPage
     {
+
+        IFacadeController ifc;
+
         public Home()
         {
             InitializeComponent();
@@ -31,6 +37,15 @@ namespace BeatIt_.Pages
             navigateOutTransition.Forward = new SlideTransition { Mode = SlideTransitionMode.SlideLeftFadeOut };
             TransitionService.SetNavigationInTransition(this, navigateInTransition);
             TransitionService.SetNavigationOutTransition(this, navigateOutTransition);
+
+            ifc = FacadeController.getInstance();
+            User loggedUser = ifc.getCurrentUser();
+
+            profileNameTxtBlock.Text = loggedUser.FirstName + loggedUser.LastName;
+            profileCountryTxtBlock.Text = loggedUser.Country;
+            profileEmailTextBlock.Text = loggedUser.Email;
+            Uri uri = new Uri(loggedUser.ImageUrl, UriKind.Absolute);
+            profileImage.Source = new BitmapImage(uri);
 
             this.initRankingListBox();
             this.initChallengesListBox();
@@ -96,14 +111,17 @@ namespace BeatIt_.Pages
 
         private void initRankingListBox()
         {
-            for (int i = 1; i <= 20; i++) 
+            List<DTRanking> ranking = ifc.getRanking(); 
+
+            for (int i = 0; i < ranking.Count; i++) 
             {
+                DTRanking dtr = (DTRanking)ranking[i];
                 RankingListItem listItem = new RankingListItem();
-                listItem.selectedRec.Visibility = (i == 2) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-                listItem.positionTxtBlock.Text = i.ToString();
-                listItem.scoreTxtBlock.Text = "128";
-                listItem.nameTxtBlock.Text = "Martín Alayón";
-                Uri uri = new Uri("http://graph.facebook.com/tincho.alayon/picture?type=square", UriKind.Absolute);
+                listItem.selectedRec.Visibility = ( ifc.getCurrentUser().UserId == dtr.getUserId() ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                listItem.positionTxtBlock.Text = dtr.getPosition().ToString();
+                listItem.scoreTxtBlock.Text = dtr.getScore().ToString();
+                listItem.nameTxtBlock.Text = dtr.getName();
+                Uri uri = new Uri(dtr.getImageUrl(), UriKind.Absolute);
                 listItem.userImage.Source = new BitmapImage(uri);
                 RankingListBox.Items.Add(listItem);
             }

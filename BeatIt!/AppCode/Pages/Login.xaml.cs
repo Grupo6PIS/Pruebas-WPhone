@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using BeatIt_.AppCode.Interfaces;
+using BeatIt_.AppCode.Controllers;
 
 namespace BeatIt_.Pages
 {
@@ -32,6 +34,7 @@ namespace BeatIt_.Pages
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
+            IFacadeController ifc = FacadeController.getInstance();
             NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Home.xaml", UriKind.Relative));
         }
     }
