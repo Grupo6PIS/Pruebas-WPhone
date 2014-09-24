@@ -8,8 +8,8 @@
     <ProjectGuid>{EF80F3C2-15B0-4921-A5CB-72F00587BBFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BeatItTest</RootNamespace>
-    <AssemblyName>BeatItTest</AssemblyName>
+    <RootNamespace>BeatIt.Tests</RootNamespace>
+    <AssemblyName>BeatIt.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
