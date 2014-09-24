@@ -13,7 +13,7 @@ namespace BeatItTest
         [TestMethod]
         public void TestingFunctioncalculatePuntaje()
         {
-            Assert.AreEqual(4,2+2);
+            Assert.AreEqual(4,3+2);
             
             //IChallengeController ich = ChallengeController.getInstance();
             //UsainBolt ubBolt = (UsainBolt)ich.getChallenge(BeatIt_.AppCode.Enums.ChallengeType.CHALLENGE_TYPE.USAIN_BOLT);
