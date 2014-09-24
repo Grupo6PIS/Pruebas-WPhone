@@ -56,7 +56,7 @@ namespace BeatIt_.AppCode.Challenges
             List<State>.Enumerator e = this.states.GetEnumerator();
             e.MoveNext();
             return e.Current.getPuntaje();
-        }
+        
 
         public void finish(int tiempo)
         {
