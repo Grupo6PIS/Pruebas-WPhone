@@ -51,9 +51,8 @@ namespace BeatIt_.Pages
             Uri uri = new Uri(loggedUser.ImageUrl, UriKind.Absolute);
             profileImage.Source = new BitmapImage(uri);
 
-
             this.initChallengesListBox();
-
+            this.InitRankingListBox();
         }
 
         public static SolidColorBrush GetColorFromHexa(string hexaColor)
@@ -114,132 +113,40 @@ namespace BeatIt_.Pages
             NavigationService.Navigate(new Uri(pagePath, UriKind.Relative));
         }
 
-
-        //Comienza a obtener los parametros de Facebook
-
-        private string _accessToken;
-        private string _userId;
-
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            _accessToken = NavigationContext.QueryString["access_token"];
-            _userId = NavigationContext.QueryString["id"];
-            LoadFacebookData();
-        }
-
-        private void LoadFacebookData()
-        {
-            GetUserProfilePicture();
-
-            GraphApiSample();
-
-            InitRankingListBox();
-
-        }
-
-        private RankingListItem UserlistItem = new RankingListItem();
-        private void GetUserProfilePicture()
-        {
-
-            string profilePictureUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", _userId, "square", _accessToken);
-
-            UserlistItem.selectedRec.Visibility = System.Windows.Visibility.Visible;
-            UserlistItem.positionTxtBlock.Text = 2.ToString(CultureInfo.InvariantCulture);
-            UserlistItem.scoreTxtBlock.Text = 198.ToString();
-            var uri = new Uri(profilePictureUrl, UriKind.Absolute);
-            UserlistItem.userImage.Source = new BitmapImage(uri);
-            profileImage.Source = new BitmapImage(uri);
-        }
-
-        private void GraphApiSample()
-        {
-            var fb = new FacebookClient(_accessToken);
-
-            fb.GetCompleted += (o, e) =>
-            {
-                if (e.Error != null)
-                {
-                    Dispatcher.BeginInvoke(() => MessageBox.Show(e.Error.Message));
-                    return;
-                }
-
-                var result = (IDictionary<string, object>)e.GetResultData();
-
-                Dispatcher.BeginInvoke(() =>
-                {
-                    UserlistItem.nameTxtBlock.Text = (string)result["name"];
-                    profileNameTxtBlock.Text = (string)result["name"];
-                    profileEmailTextBlock.Text = (string)result["email"];
-                    profileCountryTxtBlock.Text = "Uruguay"; // result[4].ToString(); //hometown ["hometown[0]"]; // 
-                });
-            };
-
-            fb.GetAsync("me");
-        }
-
-        //Fin paramentros facebook
-
-
-
         private void InitRankingListBox()
         {
             List<DTRanking> ranking = ifc.getRanking();
 
             for (int i = 0; i < ranking.Count; i++)
             {
-                if (i != 2)
-                {
-                    DTRanking dtr = (DTRanking)ranking[i];
-                    RankingListItem listItem = new RankingListItem();
-                    listItem.selectedRec.Visibility = (ifc.getCurrentUser().UserId == dtr.getUserId()) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-                    listItem.positionTxtBlock.Text = dtr.getPosition().ToString();
-                    listItem.scoreTxtBlock.Text = dtr.getScore().ToString();
-                    listItem.nameTxtBlock.Text = dtr.getName();
-                    Uri uri = new Uri(dtr.getImageUrl(), UriKind.Absolute);
-                    listItem.userImage.Source = new BitmapImage(uri);
-                    RankingListBox.Items.Add(listItem);
-                }
-                else
-                {
-                    RankingListBox.Items.Add(UserlistItem);
-                }
-
+                DTRanking dtr = (DTRanking)ranking[i];
+                RankingListItem listItem = new RankingListItem();
+                listItem.selectedRec.Visibility = (ifc.getCurrentUser().UserId == dtr.getUserId()) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                listItem.positionTxtBlock.Text = dtr.getPosition().ToString();
+                listItem.scoreTxtBlock.Text = dtr.getScore().ToString();
+                listItem.nameTxtBlock.Text = dtr.getName();
+                Uri uri = new Uri(dtr.getImageUrl(), UriKind.Absolute);
+                listItem.userImage.Source = new BitmapImage(uri);
+                RankingListBox.Items.Add(listItem);
             }
-
-            //   //FOTOS
-            //   Uri uri1 = new Uri("http://graph.facebook.com/tincho.alayon/picture?type=square", UriKind.Absolute);
-            //   ph1.Source = new BitmapImage(uri1);
-            ////   Uri uri2 = new Uri("http://graph.facebook.com/100002316914037/picture?type=square", UriKind.Absolute);
-            ////   ph2.Source = new BitmapImage(uri2);
-            //   Uri uri3 = new Uri("http://graph.facebook.com/100002316914037/picture?type=square", UriKind.Absolute);
-            //   ph3.Source = new BitmapImage(uri3);
-            //   Uri uri4 = new Uri("http://graph.facebook.com/cristian.bauza/picture", UriKind.Absolute);
-            //   ph4.Source = new BitmapImage(uri4);
-            //   Uri uri5 = new Uri("http://graph.facebook.com/pablo.olivera/picture", UriKind.Absolute);
-            //   ph5.Source = new BitmapImage(uri5);
-            //   Uri uri6 = new Uri("http://graph.facebook.com/alejandro.brusco/picture?type=square", UriKind.Absolute);
-            //   ph6.Source = new BitmapImage(uri6);
-            //   Uri uri7 = new Uri("http://graph.facebook.com/felipe92/picture?type=square", UriKind.Absolute);
-            //   ph7.Source = new BitmapImage(uri7);
-            //   Uri uri8 = new Uri("http://graph.facebook.com/tinchoste/picture?type=square", UriKind.Absolute);
-            //   ph8.Source = new BitmapImage(uri8);
         }
 
         private void logoutBtn_Click(object sender, RoutedEventArgs e)
         {
-
             var fb = new FacebookClient();
             var parameters = new Dictionary<string, object>();
             parameters["next"] = "https://www.facebook.com/connect/login_success.html";
-            parameters["access_token"] = _accessToken;
+            parameters["access_token"] = ifc.getCurrentUser().FbAccessToken;
             var logoutUrl = fb.GetLogoutUrl(parameters);
             var webBrowser = new WebBrowser();
             webBrowser.Navigate(logoutUrl);
             webBrowser.Navigated += (o, args) =>
             {
-                if (args.Uri.AbsoluteUri == "https://www.facebook.com/connect/login_success.html")
+                if (args.Uri.AbsoluteUri == "https://www.facebook.com/connect/login_success.html") 
+                {
+                    ifc.logoutUser();
                     NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Login.xaml", UriKind.Relative));
+                }
             };
         }
 

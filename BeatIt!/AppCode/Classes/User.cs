@@ -15,6 +15,7 @@ namespace BeatIt_.AppCode.Classes
     {
         private int userId;
         private string fbId;
+        private string fbAccessToken;
         private string firstName;
         private string lastName;
         private string country;
@@ -37,6 +38,12 @@ namespace BeatIt_.AppCode.Classes
         {
             get { return fbId; }
             set { fbId = value; }
+        }
+
+        public string FbAccessToken
+        {
+            get { return fbAccessToken; }
+            set { fbAccessToken = value; }
         }
 
         public string FirstName

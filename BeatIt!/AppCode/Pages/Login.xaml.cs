@@ -15,6 +15,7 @@ using Facebook;
 using Microsoft.Phone.Controls;
 using BeatIt_.AppCode.Interfaces;
 using BeatIt_.AppCode.Controllers;
+using BeatIt_.AppCode.Classes;
 
 
 namespace BeatIt_.Pages
@@ -47,7 +48,7 @@ namespace BeatIt_.Pages
             parameters["redirect_uri"] = "https://www.facebook.com/connect/login_success.html";
             parameters["response_type"] = "token";
             parameters["display"] = "page";
-            parameters["scope"] = "email, user_friends, user_hometown";
+            parameters["scope"] = "email, user_friends, user_hometown, user_birthday";
 
             var urlBuilder = new StringBuilder();
             foreach (var current in parameters)
@@ -86,9 +87,7 @@ namespace BeatIt_.Pages
             {
                 MessageBox.Show(oauthResult.ErrorDescription);
             }
-
         }
-
 
         private void LoginSucceded(string accessToken)
         {
@@ -103,17 +102,25 @@ namespace BeatIt_.Pages
                 }
 
                 var result = (IDictionary<string, object>)e.GetResultData();
-                var id = (string)result["id"];
 
-                var url = string.Format("/BeatIt!;component/AppCode/Pages/Home.xaml?access_token={0}&id={1}", accessToken, id);
+                User user = new User();
+                user.UserId = 1;
+                user.FbId = (string)result["id"];
+                user.FbAccessToken = accessToken;
+                user.FirstName = (string)result["first_name"];
+                user.LastName = (string)result["last_name"];
+                user.Country = "Uruguay";
+                user.BirthDate = new DateTime(1989, 08, 07);
+                user.ImageUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", user.FbId, "square", accessToken);
+                user.Email = (string)result["email"];
 
-                Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri(url, UriKind.Relative)));
+                IFacadeController ifc = FacadeController.getInstance();
+                ifc.loginUser(user);
+
+                Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Home.xaml", UriKind.Relative)));
             };
 
-            fb.GetAsync("me?fields=id");
+            fb.GetAsync("me");
         }
-
-
-
     }
 }

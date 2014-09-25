@@ -12,5 +12,7 @@ namespace BeatIt_.AppCode.Interfaces
         bool isLoggedUser();
         User getCurrentUser();
         List<DTRanking> getRanking();
+        void loginUser(User user);
+        void logoutUser();
     }
 }
