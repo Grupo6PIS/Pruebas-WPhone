@@ -88,6 +88,8 @@ namespace BeatIt_.Pages
             int tag = Convert.ToInt32(linkBtn.Tag);
             Challenge ch = ifc.getChallenge(tag);
 
+            ifc.setCurrentChallenge(ch);
+
             String pagePath = "";
             if (ch.State.getCurrentAttempt() == 0)
             {
@@ -95,7 +97,7 @@ namespace BeatIt_.Pages
             }
             else
             {
-                pagePath = "/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml";   
+                pagePath = "/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml?challengeId=" + ch.ChallengeId;   
             }
             NavigationService.Navigate(new Uri(pagePath, UriKind.Relative));
         }
