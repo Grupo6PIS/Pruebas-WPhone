@@ -69,39 +69,15 @@ namespace BeatIt_.Pages
 
         private void initChallengesListBox()
         {
-
-            string[] colors = new string[10];
-            colors[0] = "#FF008A00";
-            colors[1] = "#FF1CA1E3";
-            colors[2] = "#FFFA6800";
-            colors[3] = "#FFE3C900";
-            colors[4] = "#FFAA00FF";
-            colors[5] = "#FFE61300";
-            colors[6] = "#FFFA6800";
-            colors[7] = "#FF008A02";
-            colors[8] = "#FF1CA1E3";
-            colors[9] = "#FFE3C900";
-
-            string[] images = new string[10];
-            images[0] = "/BeatIt!;component/Images/Correr.png";
-            images[1] = "/BeatIt!;component/Images/Jugar.png";
-            images[2] = "/BeatIt!;component/Images/Musica.png";
-            images[3] = "/BeatIt!;component/Images/camara.png";
-            images[4] = "/BeatIt!;component/Images/Mapa.png";
-            images[5] = "/BeatIt!;component/Images/Gps.png";
-            images[6] = "/BeatIt!;component/Images/Musica.png";
-            images[7] = "/BeatIt!;component/Images/Correr.png";
-            images[8] = "/BeatIt!;component/Images/Jugar.png";
-            images[9] = "/BeatIt!;component/Images/camara.png";
-
-            for (int i = 0; i < 10; i++)
+            foreach (KeyValuePair<int, Challenge> entry in ifc.getChallenges())
             {
+                Challenge ch = entry.Value;
                 ChallenesListItem listItem = new ChallenesListItem();
-                listItem.backgroundRec.Fill = GetColorFromHexa(colors[i]);
-                Uri uri = new Uri(images[i], UriKind.Relative);
+                listItem.backgroundRec.Fill = GetColorFromHexa(ch.ColorHex);
+                Uri uri = new Uri("/BeatIt!;component/Images/icon_challenge_" + ch.ChallengeId + ".png", UriKind.Relative);
                 listItem.image.Source = new BitmapImage(uri);
                 listItem.linkBtn.Click += linkBtn_Click;
-                listItem.linkBtn.Tag = i + 1;
+                listItem.linkBtn.Tag = ch.ChallengeId;
                 ChallengesListBox.Items.Add(listItem);
             }
         }
@@ -109,7 +85,18 @@ namespace BeatIt_.Pages
         private void linkBtn_Click(object sender, RoutedEventArgs e)
         {
             HyperlinkButton linkBtn = sender as HyperlinkButton;
-            String pagePath = "/BeatIt!;component/AppCode/Pages/Challenge" + linkBtn.Tag + ".xaml";
+            int tag = Convert.ToInt32(linkBtn.Tag);
+            Challenge ch = ifc.getChallenge(tag);
+
+            String pagePath = "";
+            if (ch.State.getCurrentAttempt() == 0)
+            {
+                pagePath = "/BeatIt!;component/AppCode/Pages/Challenge" + tag + ".xaml"; 
+            }
+            else
+            {
+                pagePath = "/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml";   
+            }
             NavigationService.Navigate(new Uri(pagePath, UriKind.Relative));
         }
 
@@ -148,17 +135,6 @@ namespace BeatIt_.Pages
                     NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Login.xaml", UriKind.Relative));
                 }
             };
-        }
-
-
-        private void hyperlinkButton1_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/Challenge1.xaml", UriKind.Relative));
-        }
-
-        private void hyperlinkButton2_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/BeatIt!;component/AppCode/Pages/ChallengeDetail.xaml", UriKind.Relative));
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

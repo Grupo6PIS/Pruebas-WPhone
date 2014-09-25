@@ -70,6 +70,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppCode\Challenges\ChallengeDetail1.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail10.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail2.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail3.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail4.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail5.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail6.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail7.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail8.cs" />
+    <Compile Include="AppCode\Challenges\ChallengeDetail9.cs" />
     <Compile Include="AppCode\Challenges\UsainBolt.cs" />
     <Compile Include="AppCode\Classes\Challenge.cs" />
     <Compile Include="AppCode\Classes\Round.cs" />
@@ -229,6 +239,16 @@
     <Resource Include="Images\Musica.png" />
     <Resource Include="Images\camara.png" />
     <Resource Include="Sounds\dog_bark.wav" />
+    <Resource Include="Images\icon_challenge_1.png" />
+    <Resource Include="Images\icon_challenge_10.png" />
+    <Resource Include="Images\icon_challenge_2.png" />
+    <Resource Include="Images\icon_challenge_3.png" />
+    <Resource Include="Images\icon_challenge_4.png" />
+    <Resource Include="Images\icon_challenge_5.png" />
+    <Resource Include="Images\icon_challenge_6.png" />
+    <Resource Include="Images\icon_challenge_7.png" />
+    <Resource Include="Images\icon_challenge_8.png" />
+    <Resource Include="Images\icon_challenge_9.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />

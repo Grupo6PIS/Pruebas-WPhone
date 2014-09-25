@@ -10,13 +10,14 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using BeatIt_.AppCode.Interfaces.Controllers;
 using System.Device.Location;
 using System.Windows.Threading;
 using BeatIt_.AppCode.Challenges;
 using BeatIt_.AppCode.Controllers;
-using System.Threading;
+using BeatIt_.AppCode.Interfaces;
+using BeatIt_.AppCode.Classes;
 using Microsoft.Devices;
+using System.Threading;
 
 /* USAIN BOLT */
 
@@ -26,15 +27,14 @@ namespace BeatIt_.Pages
     {
 
         /******************************************************************************************************************/
-        private GeoCoordinateWatcher gps;              // Instancia del GPS que se utilizara para el calculo de la velocidad.
+        private GeoCoordinateWatcher gps;                                                                           // Instancia del GPS que se utilizara para el calculo de la velocidad.
         private bool useEmulation = (Microsoft.Devices.Environment.DeviceType == DeviceType.Emulator);              // Indica si estamos corriendo la aplicacion en el emulador o en el dispositivo.
-        private UsainBolt desafio;                     // Instancia del desafio que se esta corriendo.                
+        private ChallengeDetail1 currentChallenge;                                                                               // Instancia del desafio que se esta corriendo. 
+        private IFacadeController ifc;       
         /******************************************************************************************************************/
 
         private GPS_SpeedEmulator speedEmulator;
-        private int seconds,
-                    minSpeed = 20,
-                    minTime = 30;
+        private int seconds, minSpeed, minTime;
         private DispatcherTimer timer;
         private Boolean isRunning = false; //SE CAMBIA A TRUE CUANDO LA VELOCIDAD ACTUAL ES MAYOR O IGUAL A LA VELOCIDAD MINIMA DEL DESAFíO
 
@@ -62,19 +62,21 @@ namespace BeatIt_.Pages
         {
             // OBTENEMOS LA INSTANCIA DEL DESAFIO.
             /* hay que prolijear esto con una factory */
-            IChallengeController ich = ChallengeController.getInstance();
-            this.desafio = (UsainBolt)ich.getChallenge(AppCode.Enums.ChallengeType.CHALLENGE_TYPE.USAIN_BOLT);
+            ifc = FacadeController.getInstance();
+            this.currentChallenge = (ChallengeDetail1)ifc.getChallenge(1);
             
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += tickTemp;
 
+            minTime = this.currentChallenge.Time;
+            minSpeed = this.currentChallenge.MinSpeed;
             seconds = minTime;
             
 
             // INICIALIZAMOS LAS ETIQUETAS DEL DETALLE DEL DESAFIO
-            this.ShowST.Text = this.desafio.getDTChallenge().getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
-            this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + " pts";
+            this.ShowST.Text = this.currentChallenge.getDTChallenge().getStartTime().ToString(); // Ojo ver el tema de la fecha y hora (Cuando estamos en el limite de una ronda y la otra).
+            this.ShowToBeat.Text = this.currentChallenge.State.getScore() + " pts";
             DateTime roundDate = new DateTime(2014, 9, 28, 22, 0, 0);
             this.ShowDuration.Text = getDurationString(roundDate);
 
@@ -96,7 +98,7 @@ namespace BeatIt_.Pages
                 this.gps.PositionChanged += positionChanged;
                 this.gps.StatusChanged += statusChanged;
                 this.gps.Start();
-                this.ShowToBeat.Text =this.desafio.getPuntajeObtenido() + " pts";
+                this.ShowToBeat.Text = this.currentChallenge.State.getScore() + " pts";
             }
         }
 
@@ -157,8 +159,8 @@ namespace BeatIt_.Pages
                         speedEmulator.Stop();
                     }
                     seconds = minTime;
-                    this.desafio.finish(minTime);
-                    this.ShowToBeat.Text = this.desafio.getPuntajeObtenido() + " pts";
+                    this.currentChallenge.completeChallenge(true, 12, 15);
+                    this.ShowToBeat.Text = this.currentChallenge.State.getScore() + " pts";
                     MessageBox.Show("Desafio completado!");
                 }
                 else
@@ -214,6 +216,8 @@ namespace BeatIt_.Pages
                     //Desafío no completado
                     timer.Stop();
                     seconds = minTime;
+
+                    this.currentChallenge.completeChallenge(false, 0, 0);
 
                     //CAMBIO DE GRILLA (InProgressGrid ==> StartRunningGrid)
                     StartRunningGrid.Visibility = System.Windows.Visibility.Visible;

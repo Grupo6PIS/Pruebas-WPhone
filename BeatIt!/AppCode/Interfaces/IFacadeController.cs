@@ -14,5 +14,7 @@ namespace BeatIt_.AppCode.Interfaces
         List<DTRanking> getRanking();
         void loginUser(User user);
         void logoutUser();
+        Challenge getChallenge(int challengeId);
+        Dictionary<int, Challenge> getChallenges();
     }
 }

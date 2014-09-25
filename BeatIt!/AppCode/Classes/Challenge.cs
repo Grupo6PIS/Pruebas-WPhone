@@ -21,6 +21,7 @@ namespace BeatIt_.AppCode.Classes
         private bool isEnabled;
         private int level;
         private int maxAttempt;
+        private string colorHex;
         private Round round;
         private State state;
 
@@ -62,6 +63,12 @@ namespace BeatIt_.AppCode.Classes
         {
             get { return maxAttempt; }
             set { maxAttempt = value; }
+        }
+
+        public string ColorHex
+        {
+            get { return colorHex; }
+            set { colorHex = value; }
         }
 
         public Round Round

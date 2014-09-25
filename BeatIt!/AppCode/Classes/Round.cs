@@ -17,7 +17,7 @@ namespace BeatIt_.AppCode.Classes
         private int roundId;
         private DateTime startDate;
         private DateTime endDate;
-        private Dictionary<int,Challenge> challenges;
+        private Dictionary<int, Challenge> challenges;
 
         public Round()
         {
