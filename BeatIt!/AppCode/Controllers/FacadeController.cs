@@ -74,13 +74,13 @@ namespace BeatIt_.AppCode.Controllers
 
             this.currentRound = round;
 
-            DTRanking r1 = new DTRanking(this.currentUser.UserId, 1, 1280, this.currentUser.FirstName + " " + this.currentUser.LastName, this.currentUser.ImageUrl);
-            DTRanking r2 = new DTRanking(2, 2, 1270, "Martín Berguer", "http://graph.facebook.com/100002316914037/picture?type=square");
-            DTRanking r3 = new DTRanking(3, 3, 1260, "Cristian Bauza", "http://graph.facebook.com/cristian.bauza/picture");
-            DTRanking r4 = new DTRanking(4, 4, 1240, "Pablo Olivera", "http://graph.facebook.com/pablo.olivera/picture");
-            DTRanking r5 = new DTRanking(5, 5, 1230, "Alejandro Brusco", "http://graph.facebook.com/alejandro.brusco/picture?type=square");
-            DTRanking r6 = new DTRanking(6, 6, 1220, "Felipe Garcia", "http://graph.facebook.com/felipe92/picture?type=square");
-            DTRanking r7 = new DTRanking(7, 7, 1210, "Martín Steglich", "http://graph.facebook.com/tinchoste/picture?type=square");
+            DTRanking r1 = new DTRanking(this.currentUser.UserId, 1, 280, this.currentUser.FirstName + " " + this.currentUser.LastName, this.currentUser.ImageUrl);
+            DTRanking r2 = new DTRanking(2, 2, 127, "Martín Berguer", "http://graph.facebook.com/100002316914037/picture?type=square");
+            DTRanking r3 = new DTRanking(3, 3, 106, "Cristian Bauza", "http://graph.facebook.com/cristian.bauza/picture");
+            DTRanking r4 = new DTRanking(4, 4, 94, "Pablo Olivera", "http://graph.facebook.com/pablo.olivera/picture");
+            DTRanking r5 = new DTRanking(5, 5, 73, "Alejandro Brusco", "http://graph.facebook.com/alejandro.brusco/picture?type=square");
+            DTRanking r6 = new DTRanking(6, 6, 22, "Felipe Garcia", "http://graph.facebook.com/felipe92/picture?type=square");
+            DTRanking r7 = new DTRanking(7, 7, 15, "Martín Steglich", "http://graph.facebook.com/tinchoste/picture?type=square");
 
             this.ranking = new List<DTRanking>();
             this.ranking.Add(r1);

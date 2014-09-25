@@ -45,7 +45,7 @@ namespace BeatIt_.Pages
             ifc = FacadeController.getInstance();
             User loggedUser = ifc.getCurrentUser();
 
-            profileNameTxtBlock.Text = loggedUser.FirstName + loggedUser.LastName;
+            profileNameTxtBlock.Text = loggedUser.FirstName + " " + loggedUser.LastName;
             profileCountryTxtBlock.Text = loggedUser.Country;
             profileEmailTextBlock.Text = loggedUser.Email;
             Uri uri = new Uri(loggedUser.ImageUrl, UriKind.Absolute);
